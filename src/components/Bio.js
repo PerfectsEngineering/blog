@@ -9,12 +9,12 @@ function Bio() {
     <StaticQuery
       query={bioQuery}
       render={data => {
-        const { author, social, title } = data.site.siteMetadata
+        const { author } = data.site.siteMetadata
         return (
           <div
             style={{
               display: `flex`,
-              marginBottom: rhythm(2.5),
+              marginBottom: rhythm(0.3),
             }}
           >
             <Image
@@ -31,7 +31,7 @@ function Bio() {
               }}
             />
             <p>
-              Welcome to Perfect Engineering's Blog. Learn about Android, Blockchain and general software engineering tips 😉.
+              Learn about Android, Blockchain and general software engineering tips 😉.
             </p>
           </div>
         )
