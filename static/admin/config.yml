@@ -2,12 +2,15 @@ backend:
   name: git-gateway
   branch: master
 
+display_url: https://blog.perfect.engineering
+
 publish_mode: editorial_workflow
 media_folder: "content/assets"
 public_folder: "/static/cms/"
 
 collections:
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
+    description: "Blogs currently posted on the cms"
     label: "Blog" # Used in the UI
     folder: "content/blog" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
