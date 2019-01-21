@@ -6,7 +6,7 @@ display_url: https://blog.perfect.engineering
 
 publish_mode: editorial_workflow
 media_folder: "content/assets"
-public_folder: "/static/cms/"
+public_folder: "/static/"
 
 collections:
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
