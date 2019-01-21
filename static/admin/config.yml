@@ -10,11 +10,11 @@ public_folder: "/static/cms/"
 
 collections:
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
-    description: "Blogs currently posted on the cms"
+    description: "Blogs currently posted Perfect Engineering's Blog"
     label: "Blog" # Used in the UI
     folder: "content/blog" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}/index" # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: "{{slug}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
       - {label: "Title", name: "title", widget: "string"}
