@@ -1,10 +1,10 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const _ = require('lodash');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
   return graphql(
     `
       {
@@ -18,7 +18,8 @@ exports.createPages = ({ graphql, actions }) => {
                 slug
               }
               frontmatter {
-                title
+                title,
+                tags
               }
             }
           }
@@ -29,24 +30,9 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
-
-    // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges
-
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
-
-      createPage({
-        path: post.node.fields.slug,
-        component: blogPost,
-        context: {
-          slug: post.node.fields.slug,
-          previous,
-          next,
-        },
-      })
-    })
+    const posts = result.data.allMarkdownRemark.edges;
+    createBlogPostPages(posts, createPage)
+    createTagPages(posts, createPage)
   })
 }
 
@@ -61,4 +47,38 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value,
     })
   }
+}
+
+function createBlogPostPages(posts, createPage) {
+  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  posts.forEach((post, index) => {
+    const previous = index === posts.length - 1 ? null : posts[index + 1].node;
+    const next = index === 0 ? null : posts[index - 1].node;
+    createPage({
+      path: post.node.fields.slug,
+      component: blogPost,
+      context: {
+        slug: post.node.fields.slug,
+        previous,
+        next,
+      },
+    });
+  });
+}
+
+function createTagPages(posts, createPage) {
+  const rejectEmpty = _.partialRight(_.reject, _.isEmpty)
+  const fetchTags = _.flow(_.flatMap, _.uniq, rejectEmpty)
+  const tags = fetchTags(posts, post => _.get(post, `node.frontmatter.tags`, ``))
+  
+  const tagTemplate = path.resolve(`./src/templates/tags.js`)
+  tags.forEach(tag => {
+    createPage({
+      path: `/tags/${_.kebabCase(tag)}/`,
+      component: tagTemplate,
+      context: {
+        tag,
+      },
+    })
+  })
 }
