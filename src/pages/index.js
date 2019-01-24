@@ -6,6 +6,7 @@ import Bio from '../components/Bio'
 import Layout from '../components/Layout'
 import SEO from '../components/seo'
 import { rhythm } from '../utils/typography'
+import Tags from '../components/Tags';
 
 class BlogIndex extends React.Component {
   renderPost(node) {
@@ -22,6 +23,7 @@ class BlogIndex extends React.Component {
           </Link>
         </h3>
         <small>{node.frontmatter.date}</small>
+        <Tags tags={node.frontmatter.tags} />
         <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
       </div>
     )
@@ -30,7 +32,6 @@ class BlogIndex extends React.Component {
     const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = _.get(data, 'allMarkdownRemark.edges', []);
-    const welcomePost = _.get(data, 'welcome.edges', []);
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -40,8 +41,6 @@ class BlogIndex extends React.Component {
         />
         <Bio />
         {posts.map(({ node }) => this.renderPost(node))}
-        {/* Welcome post always shows at the bottom */}
-        {welcomePost.map(({ node }) => this.renderPost(node))}
       </Layout>
     )
   }
@@ -56,21 +55,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    welcome: allMarkdownRemark(filter: { frontmatter: { title : { eq: "Welcome" }} }) {
-      edges {
-          node {
-            excerpt
-            fields {
-              slug
-            }
-            frontmatter {
-              date(formatString: "MMMM DD, YYYY")
-              title
-            }
-          }
-        }
-    }
-    allMarkdownRemark(filter: { frontmatter: { title : { ne: "Welcome" }} }, sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt
@@ -80,6 +65,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            tags
           }
         }
       }

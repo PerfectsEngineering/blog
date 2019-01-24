@@ -76,6 +76,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-netlify-cms`,
-    `gatsby-plugin-twitter`
+    `gatsby-plugin-twitter`,
+    `gatsby-plugin-less`
   ],
 }
