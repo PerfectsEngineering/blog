@@ -1,7 +1,7 @@
 ---
 layout: blog
 title: Quick C++ Input Stream Explanation
-tags: ["tutorial", "tips", "c++"]
+tags: ["tutorial", "tips", "cplusplus"]
 date: 2018-02-26T00:32:25.607Z
 ---
 This post is written to address this question raised on twitter:
