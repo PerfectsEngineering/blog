@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Perfect Engineering`,
+    title: `Perfects.Engineering`,
     author: `Perfect Makanju`,
-    description: `Engineering blog for Perfect Engineering.`,
-    siteUrl: `https://blog.perfect.engineering/`,
+    description: `Engineering blog for Perfects.Engineering.`,
+    siteUrl: `https://blog.perfects.engineering/`,
     social: {
       twitter: `perfectmak`,
       instagram: `perfectmak`
@@ -58,13 +58,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Perfect Engineering Blog`,
+        name: `Perfects.Engineering Blog`,
         short_name: `PE Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/pe-icon.png`,
+        icon: `content/assets/profile-pic.png`,
       },
     },
     `gatsby-plugin-offline`,
