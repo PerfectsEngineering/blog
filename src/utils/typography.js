@@ -9,6 +9,9 @@ Wordpress2016.overrideThemeStyles = () => {
   }
 }
 
+Wordpress2016.headerFontFamily = ['Montserrat', 'Helvetica Neue', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+Wordpress2016.bodyFontFamily = ['Montserrat', 'serif'];
+
 delete Wordpress2016.googleFonts
 
 const typography = new Typography(Wordpress2016)
