@@ -43,9 +43,13 @@ A lot of groups entered for this category, but I’ll be talking about a few tha
 This category involves building robots that would accomplish certain tasks. This tasks ranged from tracing lines to packing and moving coloured cubes.
 Here are some pictures of some of the arenas (in increasing order of difficulty) where the robots were to solve certain tasks.
 
+![junior_category_1](https://cdn-images-1.medium.com/max/1600/1*teTuOdMi_q6DoX04vF5n9A.jpeg)
 
+![junior_category_2](https://cdn-images-1.medium.com/max/1600/1*cQOE_WzMauxBDvPJ6DgUOg.jpeg)
 
+![junior_category_3](https://cdn-images-1.medium.com/max/1600/1*5QLYFYycygoJwTgAdvzQKA.jpeg)
 
+![junior_category_4](https://cdn-images-1.medium.com/max/1600/1*dGRGdbvzMSJoeZmf_vTxzw.jpeg)
 
 I’ll love to comment especially on the last arena shown above, it was called “Mountaineering”. The students had to build a robot that would pick up a coloured cube and place it in the hole on their respective coloured “mountains”. What was more interesting was the complexity of robots that this students were able to come up with. Here is a link to a video of one of the schools testing out to see if their robot can perform this task: https://www.youtube.com/watch?v=LG_wvRqHRaM
 
