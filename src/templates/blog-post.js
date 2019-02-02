@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import Img from 'gatsby-image';
 
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
@@ -27,6 +28,7 @@ class BlogPostTemplate extends React.Component {
         >
           {post.frontmatter.date}
         </p>
+        {post.frontmatter.featureImage && <Img sizes={post.frontmatter.featureImage.childImageSharp.sizes} style={{marginBottom: '1rem'}} />}
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <Tags tags={post.frontmatter.tags} />
         <hr
@@ -83,6 +85,13 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        featureImage {
+          childImageSharp {
+            sizes(maxWidth: 630) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
       }
     }
   }
