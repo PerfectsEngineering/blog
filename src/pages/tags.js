@@ -7,9 +7,9 @@ import kebabCase from 'lodash/kebabCase'
 import { rhythm } from '../utils/typography'
 
 // Components
-import Layout from '../components/Layout'
-import SEO from '../components/seo'
-import Bio from '../components/Bio'
+import { Layout } from '../components/Layout'
+import { SEO } from '../components/seo'
+import { Bio } from '../components/Bio'
 
 // Styles
 import '../less/Tags.less'

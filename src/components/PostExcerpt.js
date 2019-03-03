@@ -6,14 +6,14 @@ import Img from 'gatsby-image';
 import { rhythm } from '../utils/typography';
 
 // Components
-import Tags from '../components/Tags';
+import { Tags } from '../components/Tags';
 
 /**
  * Node is a markdown post node. 
  * 
  * @param {{ node: Ojbect }} props
  */
-export default function PostExcerpt({ node }) {
+export function PostExcerpt({ node }) {
   const title = node.frontmatter.title || node.fields.slug
   return (
     <div key={node.fields.slug} style={{ padding: '1rem', border: 'black 1px solid', marginBottom: '2rem' }}>

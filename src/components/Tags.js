@@ -6,7 +6,7 @@ import { Link } from "gatsby"
 
 import '../less/Tags.less';
 
-function Tags(props) {
+export function Tags(props) {
  return (<div className="tags-container">
    {get(props, 'tags', []).map(tag => (<Link to={`/tags/${kebabCase(tag)}`}><span className="tag">
      #{tag}
@@ -14,5 +14,3 @@ function Tags(props) {
     )}
  </div>)
 }
-
-export default Tags
