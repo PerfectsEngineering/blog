@@ -5,8 +5,9 @@ module.exports = {
     description: `Engineering blog for Perfects.Engineering.`,
     siteUrl: `https://blog.perfects.engineering/`,
     social: {
-      twitter: `perfectmak`,
-      instagram: `perfectmak`
+      twitter: `https://twitter.com/perfectmak`,
+      youtube: `https://youtube.perfects.engineering`,
+      linkedin: `https://linkedin.com/in/perfectmak`
     },
   },
   plugins: [

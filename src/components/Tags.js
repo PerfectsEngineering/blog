@@ -8,9 +8,17 @@ import '../less/Tags.less';
 
 export function Tags(props) {
  return (<div className="tags-container">
-   {get(props, 'tags', []).map(tag => (<Link to={`/tags/${kebabCase(tag)}`}><span className="tag">
+   {get(props, 'tags', []).map(tag => (<TagLink tag={tag}><span className="tag">
      #{tag}
-     </span></Link>)
+     </span></TagLink>)
     )}
- </div>)
+ </div>);
+}
+
+export function TagLink({ children, tag}) {
+  return (
+    <Link to={`/tags/${kebabCase(tag)}`}>
+      {children}
+    </Link>
+  );
 }

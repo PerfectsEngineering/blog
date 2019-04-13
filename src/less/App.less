@@ -1,0 +1,103 @@
+@background-color: #000000;
+@content-layout-background-color: #EEF9FD;
+@layout-header-color: #000000;
+@text-color: #ffffff;
+@inverse-text-color: #000000;
+
+@primary-color: blue;
+@secondary-color: green;
+
+@card-border-radius: 1rem;
+
+/* Setting font size to 62.5% which converts to 10px (62.5% of 16)
+ * for easier rem conversion.
+ */
+ html {
+  font-size: 62.5%;
+}
+
+.navigation-tabs {
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 6rem;
+}
+
+
+#theme() {
+  .body() {
+    color: @text-color;
+
+    h1, h2, h3, h4, h5 {
+      color: @text-color;
+    }
+
+    input[type=text] {
+      box-shadow: #16384726 0.5rem 0.5rem 1rem 0rem;
+      border-radius: 0rem;
+    }
+
+    .ant-card {
+      border-radius: @card-border-radius;
+      box-shadow: #16384726 0.5rem 0.5rem 1rem 0rem;
+      color: @text-color;
+
+      .ant-card-body {
+        border-radius: @card-border-radius;
+        background: @background-color;
+      }
+
+      .ant-card-cover img {
+        border-radius: @card-border-radius @card-border-radius 0 0;
+      }
+    }
+
+    .ant-form {
+      color: @text-color;
+    }
+
+    .ant-btn {
+      color: #ffffff;
+    }
+
+    .ant-btn-primary {
+      background-color: @primary-color;
+      border-color: @primary-color;
+    }
+
+    img {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: @text-color;
+      text-decoration: none!important;
+      -webkit-box-shadow: none!important;
+      box-shadow: none!important;
+    }
+
+    .container {
+      margin: 1rem 2rem;
+    }
+
+    .ant-layout {
+      background-color: @background-color;
+    }
+  
+    .ant-layout-header {
+      height: 100%;
+      background-color: @layout-header-color;
+    }
+
+    .social-icons {
+      font-size: 2rem
+    }
+
+    .content-container {
+      background: @content-layout-background-color;
+    }
+  }
+}
+
+
