@@ -1,7 +1,7 @@
 ---
 title: K Means and Image Quantization [Part 2]
 date: '2018-01-28T20:12:03.284Z'
-tags: ["algorithms", "kmeans", "machine-learning"]
+tags: ["algorithms", "kMeans", "machine learning"]
 featureImage: ../assets/k_mean_part_2_cover.jpg
 ---
 

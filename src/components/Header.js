@@ -97,7 +97,7 @@ export class Header extends React.Component {
 
     return (
       <Row type="flex">
-        <Col span={24}>
+        <Col span={22} offset={1}>
           <Row className="header" type="flex" justify="space-between" align="middle">
             <Col md={12} xs={24} className="logo">
               <Link to={`/`}>

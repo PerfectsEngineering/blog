@@ -17,7 +17,7 @@ export function Tags(props) {
 
 export function TagLink({ children, tag}) {
   return (
-    <Link to={`/tags/${kebabCase(tag)}`}>
+    <Link to={`/tags/${kebabCase(tag)}`} style={{color: '#73D9B1'}}>
       {children}
     </Link>
   );

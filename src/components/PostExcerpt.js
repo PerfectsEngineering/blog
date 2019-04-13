@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import first from 'lodash/first';
+import upperCase from 'lodash/upperCase';
 
 import { Card, Col, Icon, Row } from 'antd';
 
@@ -7,7 +9,7 @@ import { Card, Col, Icon, Row } from 'antd';
 import { getFeatureImage } from '../utils/posts';
 
 // Components
-import { Tags } from '../components/Tags';
+import { Tags, TagLink } from '../components/Tags';
  
 const featuredPostExcerptLayout = {
   sm: {
@@ -23,14 +25,15 @@ const featuredPostExcerptLayout = {
 
 function ExcerptBody({ post }) {
   const title = post.frontmatter.title || post.fields.slug;
+  const firstTag = first(post.frontmatter.tags);
   const maxHeight = '20rem';
   return (
-    
     <div style={{ height: maxHeight, maxHeight, verticalAlign: 'middle' }}>
-      <h3> 
-        
-          {title}
-        
+      <div style={{ margin: '1.5rem 0', fontWeight: 800, fontSize: '1rem' }}>
+        <TagLink tag={firstTag}>{upperCase(firstTag)}</TagLink> . {upperCase(post.fields.readingTime.text)}
+      </div>
+      <h3 style={{ marginBottom: '2rem' }}> 
+        {title}
       </h3>
       <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
       <Icon type="calendar" /> <small>{post.frontmatter.date}</small>
@@ -73,7 +76,7 @@ export function FeaturedPostExcerpt({ node }) {
         }}
         hoverable="true"
       >
-        <Row type="flex">
+        <Row type="flex" className="featured-post">
           <Col {...featuredPostExcerptLayout}>
             {getFeatureImage(node, { height: '30rem' })}
           </Col>
