@@ -1,4 +1,5 @@
 import React from 'react'
+import { Row, Col } from 'antd';
 import { graphql } from 'gatsby'
 import _ from 'lodash'
 
@@ -6,6 +7,19 @@ import { Bio } from '../components/Bio'
 import { Layout } from '../components/Layout'
 import { SEO } from '../components/seo'
 import { PostExcerpt } from '../components/PostExcerpt';
+import { ContentContainer } from '../components/ContentContainer';
+
+const postsExcerptLayout = {
+  sm: {
+    span: 24
+  },
+  md: {
+    span: 12,
+  },
+  lg: {
+    span: 8
+  }
+};
 
 class TagPosts extends React.Component {
   render() {
@@ -24,9 +38,31 @@ class TagPosts extends React.Component {
           title={`Posts tagged ${tag}`}
           description={tagHeader}
         />
-        <h1>{tagHeader}</h1>
-        <Bio />
-        {posts.map(PostExcerpt)}
+        <Row type="flex" >
+          <Col span={24}>
+            <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>{tagHeader}</h2>  
+          </Col>
+        </Row>
+        <div className="content-container">
+          <div>
+          <ContentContainer>
+            
+            
+            <Row
+              className="container"
+              type="flex"
+              justify="space-between"
+              gutter={{ xs: 0, sm: 0, md: 16, lg: 24 }}
+            >
+              {posts.map(post => (
+                <Col {...postsExcerptLayout}>
+                  <PostExcerpt {...post} />
+                </Col>
+              ))}
+            </Row>
+          </ContentContainer>
+          </div>
+        </div>
       </Layout>
     )
   }

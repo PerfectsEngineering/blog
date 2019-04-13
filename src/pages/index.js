@@ -6,7 +6,6 @@ import { Layout } from '../components/Layout'
 import { SEO } from '../components/seo'
 import { FeaturedPostExcerpt, PostExcerpt } from '../components/PostExcerpt';
 import { Row, Col, Form, Input, Button } from 'antd';
-import { TagLink } from '../components/Tags';
 import { ContentContainer } from '../components/ContentContainer';
 
 const postsExcerptLayout = {
