@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'gatsby';
 import first from 'lodash/first';
 import upperCase from 'lodash/upperCase';
+import truncate from 'lodash/truncate';
 
 import { Card, Col, Icon, Row } from 'antd';
 
@@ -9,7 +10,7 @@ import { Card, Col, Icon, Row } from 'antd';
 import { getFeatureImage } from '../utils/posts';
 
 // Components
-import { Tags, TagLink } from '../components/Tags';
+import { TagLink } from '../components/Tags';
  
 const featuredPostExcerptLayout = {
   sm: {
@@ -23,21 +24,31 @@ const featuredPostExcerptLayout = {
   }
 };
 
+export const postsExcerptLayout = {
+  sm: {
+    span: 24
+  },
+  md: {
+    span: 12,
+  },
+  lg: {
+    span: 8
+  }
+};
+
 function ExcerptBody({ post }) {
   const title = post.frontmatter.title || post.fields.slug;
-  const firstTag = first(post.frontmatter.tags);
   const maxHeight = '20rem';
   return (
     <div style={{ height: maxHeight, maxHeight, verticalAlign: 'middle' }}>
       <div style={{ margin: '1.5rem 0', fontWeight: 800, fontSize: '1rem' }}>
-        <TagLink tag={firstTag}>{upperCase(firstTag)}</TagLink> . {upperCase(post.fields.readingTime.text)}
+        <PostReadTime post={post} />
       </div>
-      <h3 style={{ marginBottom: '2rem' }}> 
-        {title}
+      <h3 title={title} style={{ marginBottom: '2rem' }}> 
+        {truncate(title, { length: '55' })}
       </h3>
       <p dangerouslySetInnerHTML={{ __html: post.excerpt }} />
-      <Icon type="calendar" /> <small>{post.frontmatter.date}</small>
-      {/* <Tags tags={post.frontmatter.tags} /> */}
+      <PostDate post={post} />
     </div>
   );
 }
@@ -90,4 +101,21 @@ export function FeaturedPostExcerpt({ node }) {
       </Card>
     </Link>
   )
+}
+
+export function PostReadTime({ post }) {
+  const firstTag = first(post.frontmatter.tags);
+  return (
+    <Fragment className='post-read-time'>
+      <TagLink tag={firstTag}>{upperCase(firstTag)}</TagLink> . {upperCase(post.fields.readingTime.text)}
+    </Fragment>
+  );
+}
+
+export function PostDate({ post }) {
+  return (
+    <Fragment>
+      <Icon type="calendar" /> <small>{post.frontmatter.date}</small>
+    </Fragment>
+  );
 }

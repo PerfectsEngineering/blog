@@ -6,20 +6,8 @@ import _ from 'lodash'
 import { Bio } from '../components/Bio'
 import { Layout } from '../components/Layout'
 import { SEO } from '../components/seo'
-import { PostExcerpt } from '../components/PostExcerpt'
+import { PostExcerpt, postsExcerptLayout } from '../components/PostExcerpt'
 import { ContentContainer } from '../components/ContentContainer'
-
-const postsExcerptLayout = {
-  sm: {
-    span: 24,
-  },
-  md: {
-    span: 12,
-  },
-  lg: {
-    span: 8,
-  },
-}
 
 class TagPosts extends React.Component {
   render() {

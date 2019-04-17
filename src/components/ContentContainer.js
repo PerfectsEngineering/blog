@@ -1,9 +1,9 @@
-import React from 'react';
-import { Col, Row } from 'antd';
+import React from 'react'
+import { Col, Row } from 'antd'
 
-const layout = {
+const defaultLayout = {
   sm: {
-    span: 24
+    span: 24,
   },
   md: {
     span: 20,
@@ -11,16 +11,15 @@ const layout = {
   },
   lg: {
     span: 18,
-    offset: 2
-  }
-};
+    offset: 2,
+  },
+}
 
-export function ContentContainer({ children }) {
+export function ContentContainer({ children, col, row }) {
+  const colLayout = col || defaultLayout
   return (
-    <Row type="flex">
-      <Col {...layout}>
-        {children}
-      </Col>
+    <Row type="flex" {...row}>
+      <Col {...col}>{children}</Col>
     </Row>
-  );
+  )
 }

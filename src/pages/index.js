@@ -1,24 +1,14 @@
 import React from 'react'
+import { Row, Col, Form, Input, Button } from 'antd';
 import { graphql } from 'gatsby'
 import _ from 'lodash'
 
 import { Layout } from '../components/Layout'
 import { SEO } from '../components/seo'
-import { FeaturedPostExcerpt, PostExcerpt } from '../components/PostExcerpt';
-import { Row, Col, Form, Input, Button } from 'antd';
+import { FeaturedPostExcerpt, PostExcerpt, postsExcerptLayout } from '../components/PostExcerpt';
 import { ContentContainer } from '../components/ContentContainer';
 
-const postsExcerptLayout = {
-  sm: {
-    span: 24
-  },
-  md: {
-    span: 12,
-  },
-  lg: {
-    span: 8
-  }
-};
+
 
 const featuredPostExcerptLayout = {
   sm: {

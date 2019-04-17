@@ -1,5 +1,6 @@
 @background-color: #000000;
 @content-layout-background-color: #EEF9FD;
+@article-content-layout-background-color: #EEF9FD;
 @layout-header-color: #000000;
 @text-color: #ffffff;
 @inverse-text-color: #000000;
@@ -30,10 +31,15 @@ h1 {
   }
 }
 
+.post-title {
+  font-size: 3rem;
+}
+
 
 #theme() {
   .body() {
     color: @text-color;
+    background-color: @background-color;
 
     h1, h2, h3, h4, h5 {
       color: @text-color;
@@ -48,11 +54,11 @@ h1 {
       border-radius: @card-border-radius;
       box-shadow: #16384726 0.5rem 0.5rem 1rem 0rem;
       color: @text-color;
-      background-color: @background-color;
+      background-color: @card-background-color;
 
       .ant-card-body {
         border-radius: @card-border-radius;
-        background: @background-color;
+        background-color: @card-background-color;
       }
 
       .ant-card-cover img {
@@ -103,6 +109,10 @@ h1 {
 
     .content-container {
       background: @content-layout-background-color;
+    }
+
+    .article-content-container {
+      background: @article-content-layout-background-color;
     }
   }
 }

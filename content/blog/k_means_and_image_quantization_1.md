@@ -3,6 +3,7 @@ title: K Means and Image Quantization [Part 1]
 date: '2017-08-23T22:12:03.284Z'
 tags: ["algorithms", "kMeans", "machine learning"]
 featureImage: ../assets/k_mean_part_1_cover.jpg
+followUpPosts: ["k_means_and_image_quantization_2"]
 ---
 
 I was having a random discussion with a colleague of mine about the University he graduated from, and I realized that there are some Universities that actually employ a grading system where students grades were given based on the current distribution of students scores.This would mean there was no set cut-off mark for Distinction, Credit, Pass or Fail. This means to get distinctions all through the University, you just had to get a score higher than all the other students (or just sabotage their efforts 😁).

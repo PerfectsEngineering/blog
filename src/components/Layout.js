@@ -18,9 +18,9 @@ export class Layout extends React.Component {
         <Content>
           {children}
         </Content>
-        <Footer>
+        {/* <Footer>
           © {new Date().getFullYear()}, Perfects.Engineering
-        </Footer>
+        </Footer> */}
       </AntLayout>
     )
   }

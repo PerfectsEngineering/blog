@@ -8,7 +8,7 @@ import '../less/Tags.less';
 
 export function Tags(props) {
  return (<div className="tags-container">
-   {get(props, 'tags', []).map(tag => (<TagLink tag={tag}><span className="tag">
+   {get(props, 'tags', []).map(tag => (<TagLink key={tag} tag={tag}><span className="tag">
      #{tag}
      </span></TagLink>)
     )}
