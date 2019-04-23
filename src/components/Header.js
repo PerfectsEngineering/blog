@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { Affix, Col, Icon, Row } from 'antd'
+import { Col, Icon, Row } from 'antd'
 
 // Utilities
 import { rhythm, scale } from '../utils/typography'
@@ -147,10 +147,22 @@ export class Header extends React.Component {
             justify="space-between"
             align="middle"
           >
-            <Col md={12} xs={24} className="logo">
+            <Col md={12} xs={22} className="logo">
               <Link to={`/`}>
                 <img src={peLogoExtended} /> <span>BLOG</span>
               </Link>
+            </Col>
+            <Col xs={2} sm={0}>
+            <Icon
+              component={DarkModeSvg}
+              className="to-dark"
+              onClick={toggleDarkOrLightTheme}
+            />
+            <Icon
+              component={LightModeSvg}
+              className="to-light"
+              onClick={toggleDarkOrLightTheme}
+            />
             </Col>
             <Col md={12} xs={0}>
               <Row type="flex" justify="end">
