@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout as AntLayout } from 'antd'
+import { Affix, Layout as AntLayout } from 'antd'
 
 import { Header } from './Header'
 
@@ -12,9 +12,11 @@ export class Layout extends React.Component {
 
     return (
       <AntLayout>
-        <AntHeader>
-          <Header {...this.props} />
-        </AntHeader>
+        <Affix>
+          <AntHeader>
+            <Header {...this.props} />
+          </AntHeader>
+        </Affix>
         <Content>
           {children}
         </Content>

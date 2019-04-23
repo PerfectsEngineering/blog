@@ -19,7 +19,7 @@ export function ContentContainer({ children, col, row }) {
   const colLayout = col || defaultLayout
   return (
     <Row type="flex" {...row}>
-      <Col {...col}>{children}</Col>
+      <Col {...colLayout}>{children}</Col>
     </Row>
   )
 }
