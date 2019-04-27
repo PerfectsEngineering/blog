@@ -1,6 +1,6 @@
 @background-color: #000000;
-@content-layout-background-color: #EEF9FD;
-@article-content-layout-background-color: #EEF9FD;
+@content-layout-background-color: #eef9fd;
+@article-content-layout-background-color: #eef9fd;
 @layout-header-color: #000000;
 @text-color: #ffffff;
 @inverse-text-color: #000000;
@@ -13,7 +13,7 @@
 /* Setting font size to 62.5% which converts to 10px (62.5% of 16)
  * for easier rem conversion.
  */
- html {
+html {
   font-size: 62.5%;
 }
 
@@ -35,17 +35,54 @@ h1 {
   font-size: 3rem;
 }
 
+.gatsby-highlight {
+  background: #000000;
+  border-radius: 0.3em;
+  overflow: auto;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  padding: 1.2rem;
+
+  pre[class*='language-'] {
+    position: relative;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    overflow: initial;
+    float: left; /* 1 */
+    min-width: 100%; /* 2 */
+  }
+}
+
+// @media (min-width: 576px) {
+// .ant-col-xs-24 {
+// display: block;
+// box-sizing: border-box;
+// width: calc(100% - 40px);
+// }
+
+//  }
+
+// @media (min-width: 480px) {
+//   .ant-col-xs-24 {
+//     width: calc(100% - 40px);
+//   }
+// }
 
 #theme() {
   .body() {
     color: @text-color;
     background-color: @background-color;
 
-    h1, h2, h3, h4, h5 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
       color: @text-color;
     }
 
-    input[type=text] {
+    input[type='text'] {
       box-shadow: #16384726 0.5rem 0.5rem 1rem 0rem;
       border-radius: 0rem;
     }
@@ -85,9 +122,9 @@ h1 {
 
     a {
       color: @text-color;
-      text-decoration: none!important;
-      -webkit-box-shadow: none!important;
-      box-shadow: none!important;
+      text-decoration: none !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
     }
 
     .container {
@@ -97,14 +134,14 @@ h1 {
     .ant-layout {
       background-color: @background-color;
     }
-  
+
     .ant-layout-header {
       height: 100%;
       background-color: @layout-header-color;
     }
 
     .social-icons {
-      font-size: 2rem
+      font-size: 2rem;
     }
 
     .content-container {
@@ -114,7 +151,11 @@ h1 {
     .article-content-container {
       background: @article-content-layout-background-color;
     }
+
+    // @media (min-width: 480px) {
+    //   .ant-col-xs-24 {
+    //     width: 99.99999%;
+    //   }
+    // }
   }
 }
-
-

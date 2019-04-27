@@ -21,6 +21,9 @@ const postsLayout = {
   xs: {
     span: 24,
   },
+  sm: {
+    span: 24,
+  },
   md: {
     span: 20,
     offset: 1,
