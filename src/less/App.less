@@ -6,7 +6,7 @@
 @inverse-text-color: #000000;
 
 @primary-color: blue;
-@secondary-color: #73D9B1;
+@secondary-color: #73d9b1;
 
 @card-border-radius: 1rem;
 
@@ -60,21 +60,6 @@ h1 {
     min-width: 100%; /* 2 */
   }
 }
-
-// @media (min-width: 576px) {
-// .ant-col-xs-24 {
-// display: block;
-// box-sizing: border-box;
-// width: calc(100% - 40px);
-// }
-
-//  }
-
-// @media (min-width: 480px) {
-//   .ant-col-xs-24 {
-//     width: calc(100% - 40px);
-//   }
-// }
 
 #theme() {
   .body() {
@@ -159,10 +144,29 @@ h1 {
       background: @article-content-layout-background-color;
     }
 
-    // @media (min-width: 480px) {
-    //   .ant-col-xs-24 {
-    //     width: 99.99999%;
-    //   }
-    // }
+    // small devices
+    @media (max-width: 575.98px) {
+      .gatsby-highlight {
+        width: 30rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .twitter-tweet {
+        width: 30rem !important;
+        margin-left: auto;
+        margin-right: auto;
+        height: auto;
+        overflow: auto;
+      }
+    }
+
+    @media (min-width: 576px) and (max-width: 767.98px) {
+      .gatsby-highlight {
+        width: 50rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
   }
 }

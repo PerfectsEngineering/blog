@@ -6,7 +6,7 @@ tags: ["introduction"]
 
 Welcome to the Official Perfect Engineering Blog.
 
-This website's content is primarily curated by Perfect Makanju ([@perfectmak](https://twitter.com/perfect)).
+This website's content is primarily curated by Perfect Makanju ([@perfectmak](https://twitter.com/perfectmak)).
 
 It's contents are focused on Android development and Blockchain Technology. These are fields that I'm passionate about and I'm looking forward to sharing knowlegde about this field with you guys.
 

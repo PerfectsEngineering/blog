@@ -94,7 +94,7 @@ Don’t forget to share this post with your friends.
 
 <hr/>
 
-UPDATE: The second part for this post can be found [here](../k_means_and_image_quantization_2.md). <<<
+UPDATE: The second part for this post can be found [here](../k_means_and_image_quantization_2).
 
 <hr/>
 
