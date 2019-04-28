@@ -152,7 +152,7 @@ export class Header extends React.Component {
                 <img src={peLogoExtended} /> <span>BLOG</span>
               </Link>
             </Col>
-            <Col xs={2} sm={0}>
+            <Col xs={2} md={0}>
             <Icon
               component={DarkModeSvg}
               className="to-dark"

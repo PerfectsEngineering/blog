@@ -14,6 +14,7 @@ import {
   PostReadTime,
 } from '../components/PostExcerpt'
 import { ContentContainer } from '../components/ContentContainer'
+import SubscriptionForm from '../components/SubscriptionForm'
 
 // styles
 
@@ -91,6 +92,12 @@ class BlogPostTemplate extends React.Component {
                   marginBottom: rhythm(1),
                 }}
               />
+
+              <Divider />
+
+              <SubscriptionForm />
+              <br/>
+              <br/>
 
               <Divider />
 
