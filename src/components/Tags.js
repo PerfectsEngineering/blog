@@ -4,8 +4,6 @@ import kebabCase from "lodash/kebabCase"
 
 import { Link } from "gatsby"
 
-import '../less/Tags.less';
-
 export function Tags(props) {
  return (<div className="tags-container">
    {get(props, 'tags', []).map(tag => (<TagLink key={tag} tag={tag}><span className="tag">

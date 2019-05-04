@@ -12,9 +12,6 @@ import { Layout } from '../components/Layout'
 import { SEO } from '../components/seo'
 import { Bio } from '../components/Bio'
 
-// Styles
-import '../less/Tags.less'
-
 const TagsPage = ({
   data: {
     allMarkdownRemark: { group },

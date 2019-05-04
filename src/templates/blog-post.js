@@ -60,6 +60,7 @@ class BlogPostTemplate extends React.Component {
 
         <div
           style={{ position: 'absolute' }}
+          className="article-content-container"
         >
           <div style={{ marginTop: '-10rem', position: 'relative' }}>
             <ContentContainer
