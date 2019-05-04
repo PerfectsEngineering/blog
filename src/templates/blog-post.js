@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Divider, Row } from 'antd'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import { get } from 'lodash'
 
 import { Layout } from '../components/Layout'
 import { SEO } from '../components/seo'
@@ -15,7 +15,7 @@ import {
 } from '../components/PostExcerpt'
 import { ContentContainer } from '../components/ContentContainer'
 import SubscriptionForm from '../components/SubscriptionForm'
-import { getFeatureImage } from '../utils/posts';
+import { getFeatureImage } from '../utils/posts'
 
 // styles
 
@@ -36,6 +36,31 @@ const postsLayout = {
   },
 }
 
+const buildSeoImageMeta = post => {
+  const seoImageSrc = get(
+    post,
+    'frontmatter.featureImage.childImageSharp.sizes.src'
+  )
+  
+  if (!seoImageSrc) {
+    return []
+  }
+
+  const websiteUrl = process.env.WEBSITE_URL || 'https://perfects.engineering'
+
+  const twitterImage = {
+    name: 'twitter:image',
+    content: `${websiteUrl}${seoImageSrc}`,
+  }
+
+  const facebookImage = {
+    name: 'og:image',
+    content: `${websiteUrl}${seoImageSrc}`,
+  }
+
+  return [twitterImage, facebookImage]
+}
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
@@ -44,20 +69,16 @@ class BlogPostTemplate extends React.Component {
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={post.frontmatter.title} description={post.excerpt} />
+        <SEO
+          title={post.frontmatter.title}
+          description={post.excerpt}
+          keywords={post.frontmatter.tags || []}
+          meta={buildSeoImageMeta(post)}
+        />
         {getFeatureImage(post, {
-          marginBottom: '1rem', height: '70vh'
+          marginBottom: '1rem',
+          height: '70vh',
         })}
-        {/* {post.frontmatter.featureImage && (
-          <Img
-            sizes={post.frontmatter.featureImage.childImageSharp.sizes}
-            style={{ marginBottom: '1rem', height: '80vh' }}
-          />
-        )}
-        {!post.frontmatter.featureImage && (
-          <img
-        )} */}
-
         <div
           style={{ position: 'absolute' }}
           className="article-content-container"
@@ -73,13 +94,7 @@ class BlogPostTemplate extends React.Component {
                 },
               }}
             >
-              <div
-                style={{
-                  marginBottom: '3rem',
-                  // paddingLeft: '2rem',
-                  // paddingTop: '2rem',
-                }}
-              >
+              <div style={{ marginBottom: '3rem' }}>
                 <PostReadTime post={post} />
               </div>
               <h1 className="post-title">{post.frontmatter.title}</h1>
@@ -92,7 +107,10 @@ class BlogPostTemplate extends React.Component {
               >
                 <PostDate post={post} />
               </p>
-              <div class="blog-post-content" dangerouslySetInnerHTML={{ __html: post.html }} />
+              <div
+                class="blog-post-content"
+                dangerouslySetInnerHTML={{ __html: post.html }}
+              />
               <Tags tags={post.frontmatter.tags} />
               <Divider />
               <Row type="flex" justify="center">
@@ -100,9 +118,9 @@ class BlogPostTemplate extends React.Component {
                   <SubscriptionForm />
                 </Col>
               </Row>
-              
-              <br/>
-              <br/>
+
+              <br />
+              <br />
 
               <Divider />
 

@@ -13,7 +13,8 @@ export function getFeatureImage(postNode, extraStyle = {}) {
   const image = get(postNode, 'frontmatter.featureImage');
   if (image) {
     return <Img
-    {...postNode.frontmatter.featureImage.childImageSharp}
+    {...image.childImageSharp}
+    alt={`${get(postNode, 'frontmatter.title')}`}
     style={{
       ...style,
       ...extraStyle
