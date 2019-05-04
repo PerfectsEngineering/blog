@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Col, Divider, Row } from 'antd'
-import { Link, graphql } from 'gatsby'
+import { Col, Divider, Row } from 'antd'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
 import { Layout } from '../components/Layout'
@@ -62,7 +62,7 @@ class BlogPostTemplate extends React.Component {
                 className: 'article-content-container',
                 style: {
                   borderRadius: '1rem',
-                  padding: '2rem 4rem',
+                  padding: '2rem 2rem',
                 },
               }}
             >
@@ -111,13 +111,12 @@ class BlogPostTemplate extends React.Component {
                 ALSO, YOU SHOULD READ THESE POSTS
               </h3>
               <Row
-                className="container"
                 type="flex"
                 justify="space-between"
                 gutter={{ xs: 0, sm: 0, md: 16, lg: 24 }}
               >
-                {similarPosts.map(post => (
-                  <Col {...postsExcerptLayout}>
+                {similarPosts.map((post, i) => (
+                  <Col {...postsExcerptLayout} key={i}>
                     <PostExcerpt {...post} />
                   </Col>
                 ))}

@@ -129,6 +129,7 @@ h1 {
 
     .ant-layout-header {
       height: 100%;
+      padding: 0 2rem;
       background-color: @layout-header-color;
     }
 
@@ -145,6 +146,22 @@ h1 {
     }
 
     // small devices
+    @media (max-width: 350px) {
+      .gatsby-highlight {
+        width: 25rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .twitter-tweet {
+        width: 25rem !important;
+        margin-left: auto;
+        margin-right: auto;
+        height: auto;
+        overflow: auto;
+      }
+    }
+
     @media (max-width: 575.98px) {
       .gatsby-highlight {
         width: 30rem;

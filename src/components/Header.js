@@ -8,7 +8,7 @@ import { toggleDarkOrLightTheme } from '../utils/theme'
 import siteConfig from '../../gatsby-config'
 
 // Images
-import peLogoExtended from '../img/pe-logo-extended.svg'
+import peLogo from '../img/pe-logo-small.png'
 
 // Stylesheets
 import '../less/Header.less'
@@ -149,7 +149,7 @@ export class Header extends React.Component {
           >
             <Col md={12} xs={22} className="logo">
               <Link to={`/`}>
-                <img src={peLogoExtended} /> <span>BLOG</span>
+                <img src={peLogo} /> <span>BLOG</span>
               </Link>
             </Col>
             <Col xs={2} md={0}>

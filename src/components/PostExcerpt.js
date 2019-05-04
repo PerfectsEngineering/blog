@@ -38,7 +38,7 @@ export const postsExcerptLayout = {
 
 function ExcerptBody({ post }) {
   const title = post.frontmatter.title || post.fields.slug
-  const maxHeight = '20rem'
+  const maxHeight = '22rem'
   return (
     <div style={{ height: maxHeight, maxHeight, verticalAlign: 'middle' }}>
       <div style={{ margin: '1.5rem 0', fontWeight: 800, fontSize: '1rem' }}>
