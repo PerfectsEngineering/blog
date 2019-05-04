@@ -20,5 +20,6 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Tags", name: "tags", widget: "list"}
+      - {label: "Follow up Posts", name: "followUpPosts", widget: "list"}
       - {label: "Feature Image", name: "featureImage", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}

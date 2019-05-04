@@ -1,4 +1,5 @@
 import React from 'react'
+import { Row, Col } from 'antd'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 
@@ -7,12 +8,9 @@ import kebabCase from 'lodash/kebabCase'
 import { rhythm } from '../utils/typography'
 
 // Components
-import Layout from '../components/Layout'
-import SEO from '../components/seo'
-import Bio from '../components/Bio'
-
-// Styles
-import '../less/Tags.less'
+import { Layout } from '../components/Layout'
+import { SEO } from '../components/seo'
+import { Bio } from '../components/Bio'
 
 const TagsPage = ({
   data: {
@@ -21,20 +19,25 @@ const TagsPage = ({
       siteMetadata: { title },
     },
   },
-  location
+  location,
 }) => (
   <Layout location={location} title={title}>
     <SEO title="Tags" description="Post Tags/Categories" />
-    <h1>List of Post Tags</h1>
-    <div className="tags-container">
-      {group.map(tag => (
-        <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
-          <span className="tag" key={tag.fieldValue}>
-            {tag.fieldValue} ({tag.totalCount})
-          </span>
-        </Link>
-      ))}
-      </div>
+    <Row type="flex">
+      <Col span={20} offset={1}>
+        <h1 style={{ textAlign: 'center' }} >List of Post Tags</h1>
+        <div className="tags-container">
+          {group.map(tag => (
+            <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
+              <span className="tag" key={tag.fieldValue}>
+                {tag.fieldValue} ({tag.totalCount})
+              </span>
+            </Link>
+          ))}
+        </div>  
+      </Col>
+    </Row>
+    
     <hr
       style={{
         marginBottom: rhythm(1),
@@ -71,9 +74,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(
-      limit: 2000
-    ) {
+    allMarkdownRemark(limit: 200000) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount

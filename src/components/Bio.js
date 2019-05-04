@@ -4,7 +4,7 @@ import Image from 'gatsby-image'
 
 import { rhythm } from '../utils/typography'
 
-function Bio() {
+export function Bio() {
   return (
     <StaticQuery
       query={bioQuery}
@@ -59,5 +59,3 @@ const bioQuery = graphql`
     }
   }
 `
-
-export default Bio

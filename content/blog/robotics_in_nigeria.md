@@ -1,7 +1,7 @@
 ---
 title: "Robotics in Nigeria: My “Eye Opening” Trip to the World Robotics Olympiad (WRO) Finals in Nigeria"
 date: '2015-10-02T22:12:03.284Z'
-tags: ["introduction", "robotics"]
+tags: ["robotics"]
 featureImage: ../assets/ilab_roc_2015.jpg
 ---
 

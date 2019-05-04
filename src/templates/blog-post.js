@@ -1,67 +1,152 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
-import Img from 'gatsby-image';
+import { Col, Divider, Row } from 'antd'
+import { graphql } from 'gatsby'
+import { get } from 'lodash'
 
-import Bio from '../components/Bio'
-import Layout from '../components/Layout'
-import SEO from '../components/seo'
+import { Layout } from '../components/Layout'
+import { SEO } from '../components/seo'
 import { rhythm, scale } from '../utils/typography'
-import Tags from '../components/Tags';
+import { Tags } from '../components/Tags'
+import {
+  PostDate,
+  PostExcerpt,
+  postsExcerptLayout,
+  PostReadTime,
+} from '../components/PostExcerpt'
+import { ContentContainer } from '../components/ContentContainer'
+import SubscriptionForm from '../components/SubscriptionForm'
+import { getFeatureImage } from '../utils/posts'
+
+// styles
+
+const postsLayout = {
+  xs: {
+    span: 24,
+  },
+  sm: {
+    span: 24,
+  },
+  md: {
+    span: 20,
+    offset: 1,
+  },
+  lg: {
+    span: 18,
+    offset: 2,
+  },
+}
+
+const buildSeoImageMeta = post => {
+  const seoImageSrc = get(
+    post,
+    'frontmatter.featureImage.childImageSharp.sizes.src'
+  )
+  
+  if (!seoImageSrc) {
+    return []
+  }
+
+  const websiteUrl = process.env.WEBSITE_URL || 'https://perfects.engineering'
+
+  const twitterImage = {
+    name: 'twitter:image',
+    content: `${websiteUrl}${seoImageSrc}`,
+  }
+
+  const facebookImage = {
+    name: 'og:image',
+    content: `${websiteUrl}${seoImageSrc}`,
+  }
+
+  return [twitterImage, facebookImage]
+}
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+    const { similarPosts } = this.props.pageContext
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
-        <SEO title={post.frontmatter.title} description={post.excerpt} />
-        <h1>{post.frontmatter.title}</h1>
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: `block`,
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
-          }}
-        >
-          {post.frontmatter.date}
-        </p>
-        {post.frontmatter.featureImage && <Img sizes={post.frontmatter.featureImage.childImageSharp.sizes} style={{marginBottom: '1rem'}} />}
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <Tags tags={post.frontmatter.tags} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
+        <SEO
+          title={post.frontmatter.title}
+          description={post.excerpt}
+          keywords={post.frontmatter.tags || []}
+          meta={buildSeoImageMeta(post)}
         />
-        <Bio />
-
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
+        {getFeatureImage(post, {
+          marginBottom: '1rem',
+          height: '70vh',
+        })}
+        <div
+          style={{ position: 'absolute' }}
+          className="article-content-container"
         >
-          <li>
-            {previous && (
-              <Link to={previous.fields.slug} rel="prev">
-                ← {previous.frontmatter.title}
-              </Link>
-            )}
-          </li>
-          <li>
-            {next && (
-              <Link to={next.fields.slug} rel="next">
-                {next.frontmatter.title} →
-              </Link>
-            )}
-          </li>
-        </ul>
+          <div style={{ marginTop: '-10rem', position: 'relative' }}>
+            <ContentContainer
+              col={{
+                ...postsLayout,
+                className: 'article-content-container',
+                style: {
+                  borderRadius: '1rem',
+                  padding: '2rem 2rem',
+                },
+              }}
+            >
+              <div style={{ marginBottom: '3rem' }}>
+                <PostReadTime post={post} />
+              </div>
+              <h1 className="post-title">{post.frontmatter.title}</h1>
+              <p
+                style={{
+                  ...scale(1 / 2),
+                  display: `block`,
+                  marginBottom: rhythm(1),
+                }}
+              >
+                <PostDate post={post} />
+              </p>
+              <div
+                class="blog-post-content"
+                dangerouslySetInnerHTML={{ __html: post.html }}
+              />
+              <Tags tags={post.frontmatter.tags} />
+              <Divider />
+              <Row type="flex" justify="center">
+                <Col xs={24} md={12}>
+                  <SubscriptionForm />
+                </Col>
+              </Row>
+
+              <br />
+              <br />
+
+              <Divider />
+
+              <h3
+                style={{
+                  marginTop: '4rem',
+                  marginBottom: '4rem',
+                  textAlign: 'center',
+                }}
+              >
+                ALSO, YOU SHOULD READ THESE POSTS
+              </h3>
+              <Row
+                type="flex"
+                justify="space-between"
+                gutter={{ xs: 0, sm: 0, md: 16, lg: 24 }}
+              >
+                {similarPosts.map((post, i) => (
+                  <Col {...postsExcerptLayout} key={i}>
+                    <PostExcerpt {...post} />
+                  </Col>
+                ))}
+              </Row>
+            </ContentContainer>
+          </div>
+        </div>
       </Layout>
     )
   }
@@ -80,6 +165,11 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
+      fields {
+        readingTime {
+          text
+        }
+      }
       html
       frontmatter {
         title

@@ -4,15 +4,19 @@ import kebabCase from "lodash/kebabCase"
 
 import { Link } from "gatsby"
 
-import '../less/Tags.less';
-
-function Tags(props) {
+export function Tags(props) {
  return (<div className="tags-container">
-   {get(props, 'tags', []).map(tag => (<Link to={`/tags/${kebabCase(tag)}`}><span className="tag">
+   {get(props, 'tags', []).map(tag => (<TagLink key={tag} tag={tag}><span className="tag">
      #{tag}
-     </span></Link>)
+     </span></TagLink>)
     )}
- </div>)
+ </div>);
 }
 
-export default Tags
+export function TagLink({ children, tag}) {
+  return (
+    <Link to={`/tags/${kebabCase(tag)}`} style={{color: '#73D9B1'}}>
+      {children}
+    </Link>
+  );
+}

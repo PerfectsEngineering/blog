@@ -1,0 +1,22 @@
+@import "App.less";
+
+@background-color: #ffffff;
+@card-background-color: #ffffff;
+@content-layout-background-color: #EEF9FD;
+@article-content-layout-background-color: #ffffff;
+@layout-header-color: #ffffff;
+@text-color: #163847;
+@blog-content-link-color: #0fb6e4;
+@primary-color: #163846;
+
+body[data-theme='light'] {
+  #theme.body();
+  
+  .to-light {
+    display: none;
+  }
+  
+  .to-dark {
+    display: inline-flex;
+  }
+}

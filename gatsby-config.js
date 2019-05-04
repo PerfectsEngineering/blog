@@ -5,8 +5,9 @@ module.exports = {
     description: `Engineering blog for Perfects.Engineering.`,
     siteUrl: `https://blog.perfects.engineering/`,
     social: {
-      twitter: `perfectmak`,
-      instagram: `perfectmak`
+      twitter: `https://twitter.com/perfectmak`,
+      youtube: `https://youtube.perfects.engineering`,
+      linkedin: `https://linkedin.com/in/perfectmak`
     },
   },
   plugins: [
@@ -40,9 +41,15 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
-          `gatsby-remark-prismjs`,
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: true
+            }
+          },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
+          `gatsby-remark-reading-time`,
         ],
       },
     },
@@ -62,7 +69,7 @@ module.exports = {
         short_name: `PE Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#0fb6e4`,
         display: `minimal-ui`,
         icon: `content/assets/profile-pic.png`,
       },
@@ -77,6 +84,11 @@ module.exports = {
     },
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-twitter`,
-    `gatsby-plugin-less`
+    {
+      resolve: `gatsby-plugin-less`,
+      options: {
+        javascriptEnabled: true
+      }
+    }
   ],
 }
