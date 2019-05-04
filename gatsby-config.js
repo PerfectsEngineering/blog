@@ -69,7 +69,7 @@ module.exports = {
         short_name: `PE Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#0fb6e4`,
+        theme_color: `#ffffff`,
         display: `minimal-ui`,
         icon: `content/assets/profile-pic.png`,
       },
