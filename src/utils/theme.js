@@ -2,9 +2,13 @@ import Lockr from 'lockr'
 
 const THEME_STORAGE_KEY = 'Theme:key'
 
+// only visible on mobile.
+const darkModeThemeColor = '#021316'
+const lightModeThemeColor = '#0fb6e4'
+
 export const Theme = {
   Dark: 'dark',
-  Light: 'light'
+  Light: 'light',
 }
 
 export const DefaultTheme = Theme.Light
@@ -13,8 +17,14 @@ export function toggleDarkOrLightTheme() {
   const theme = getTheme()
   if (theme === Theme.Dark) {
     setTheme(Theme.Light)
+    document
+      .querySelector(`meta[name='theme-color']`)
+      .setAttribute('content', lightModeThemeColor)
   } else {
     setTheme(Theme.Dark)
+    document
+      .querySelector(`meta[name='theme-color']`)
+      .setAttribute('content', darkModeThemeColor)
   }
 }
 

@@ -92,7 +92,7 @@ export function FeaturedPostExcerpt({ node }) {
         padding: '0 0',
       }}
     >
-      <Row type="flex" className="featured-post">
+      <Row type="" className="featured-post">
         <Col {...featuredPostExcerptLayout}>
           <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
             {getFeatureImage(node, { height: '30rem' })}

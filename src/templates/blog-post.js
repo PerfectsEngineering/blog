@@ -46,7 +46,7 @@ const buildSeoImageMeta = post => {
     return []
   }
 
-  const websiteUrl = process.env.WEBSITE_URL || 'https://perfects.engineering'
+  const websiteUrl = process.env.WEBSITE_URL || 'https://blog.perfects.engineering'
 
   const twitterImage = {
     name: 'twitter:image',

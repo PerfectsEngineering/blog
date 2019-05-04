@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import defaultPostImage from '../img/black-image-icons.jpg';
 
 const style = {
-  width: '100%',
+  // width: '100%',
   height: '20rem'
 }
 
