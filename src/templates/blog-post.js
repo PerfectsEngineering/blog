@@ -15,6 +15,7 @@ import {
 } from '../components/PostExcerpt'
 import { ContentContainer } from '../components/ContentContainer'
 import SubscriptionForm from '../components/SubscriptionForm'
+import { getFeatureImage } from '../utils/posts';
 
 // styles
 
@@ -44,16 +45,21 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.excerpt} />
-        {post.frontmatter.featureImage && (
+        {getFeatureImage(post, {
+          marginBottom: '1rem', height: '70vh'
+        })}
+        {/* {post.frontmatter.featureImage && (
           <Img
             sizes={post.frontmatter.featureImage.childImageSharp.sizes}
-            style={{ marginBottom: '1rem' }}
+            style={{ marginBottom: '1rem', height: '80vh' }}
           />
         )}
+        {!post.frontmatter.featureImage && (
+          <img
+        )} */}
 
         <div
           style={{ position: 'absolute' }}
-          className="article-content-container"
         >
           <div style={{ marginTop: '-10rem', position: 'relative' }}>
             <ContentContainer
@@ -85,17 +91,15 @@ class BlogPostTemplate extends React.Component {
               >
                 <PostDate post={post} />
               </p>
-              <div dangerouslySetInnerHTML={{ __html: post.html }} />
+              <div class="blog-post-content" dangerouslySetInnerHTML={{ __html: post.html }} />
               <Tags tags={post.frontmatter.tags} />
-              <hr
-                style={{
-                  marginBottom: rhythm(1),
-                }}
-              />
-
               <Divider />
-
-              <SubscriptionForm />
+              <Row type="flex" justify="center">
+                <Col xs={24} md={12}>
+                  <SubscriptionForm />
+                </Col>
+              </Row>
+              
               <br/>
               <br/>
 

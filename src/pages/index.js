@@ -40,7 +40,7 @@ class BlogIndex extends React.Component {
         >
           <Col md={{ span: 18, offset: 2 }} xs={24}>
             <Row className="container" type="flex" justify="space-between">
-              <Col lg={12} md={24} xs={0} style={{ marginBottom: '5rem' }}>
+              <Col lg={12} md={24} xs={24} style={{ marginBottom: '5rem' }}>
                 <h1 style={{ fontSize: '4rem' }}>
                   Perfects.
                   <br />
