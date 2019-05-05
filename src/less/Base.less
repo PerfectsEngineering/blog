@@ -42,49 +42,9 @@ h1 {
     background: transparent;
     margin: 0;
     padding: 0;
-    overflow: auto;
+    overflow-x: scroll;
     float: left; /* 1 */
-    min-width: 100%; /* 2 */
-  }
-}
-
-// small devices
-@media (max-width: 350px) {
-  .gatsby-highlight {
-    width: 25rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .twitter-tweet {
-    width: 25rem !important;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
-    overflow: auto;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .gatsby-highlight {
-    width: 30rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .twitter-tweet {
-    width: 30rem !important;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
-    overflow: auto;
-  }
-}
-
-@media (min-width: 576px) and (max-width: 767.98px) {
-  .gatsby-highlight {
-    width: 57rem;
-    margin-left: auto;
-    margin-right: auto;
+    min-width: 100px;
+    max-width: 100%;
   }
 }

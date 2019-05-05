@@ -81,7 +81,7 @@ class BlogPostTemplate extends React.Component {
           height: '70vh',
         })}
         <div
-          style={{ position: 'absolute' }}
+          // style={{ position: 'absolute' }}
           className="article-content-container"
         >
           <div style={{ marginTop: '-10rem', position: 'relative' }}>
