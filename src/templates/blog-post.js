@@ -109,7 +109,7 @@ class BlogPostTemplate extends React.Component {
                 <PostDate post={post} />
               </p>
               <div
-                class="blog-post-content"
+                className="blog-post-content"
                 dangerouslySetInnerHTML={{ __html: post.html }}
               />
               <Tags tags={post.frontmatter.tags} />

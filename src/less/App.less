@@ -11,67 +11,17 @@
 
 @card-border-radius: 1rem;
 
-/* Setting font size to 62.5% which converts to 10px (62.5% of 16)
- * for easier rem conversion.
- */
-html {
-  font-size: 62.5%!important;
-}
-
-.navigation-tabs {
-  font-weight: 600;
-}
-
-h1 {
-  font-size: 6rem;
-}
-
-.featured-post {
-  h3 {
-    font-size: 2rem;
-  }
-}
-
-.post-title {
-  font-size: 3rem;
-}
-
-.post-excerpt {
-  a {
-    color: @secondary-color!important;
-    font-weight: 500;
-  }
-}
-
-.SocialMediaShareButton {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0.5rem;
-}
-
-.gatsby-highlight {
-  background: #000000;
-  border-radius: 0.3em;
-  overflow: auto;
-  margin-top: 0;
-  margin-bottom: 1.2rem;
-  padding: 1.2rem;
-
-  pre[class*='language-'] {
-    position: relative;
-    background: transparent;
-    margin: 0;
-    padding: 0;
-    overflow: initial;
-    float: left; /* 1 */
-    min-width: 100%; /* 2 */
-  }
-}
-
 #theme() {
   .body() {
     color: @text-color;
     background-color: @background-color;
+
+    .post-excerpt {
+      a {
+        color: @secondary-color!important;
+        font-weight: 500;
+      }
+    }
 
     h1,
     h2,
@@ -106,7 +56,7 @@ h1 {
       ol {
         padding-left: 0.5rem;
       }
-    
+
       a {
         color: @blog-content-link-color!important;
         font-weight: 600;
@@ -167,60 +117,19 @@ h1 {
     .tags-container {
       margin-top: 1rem;
       margin-bottom: 1rem;
-    
+
       // a:hover, a:visited, a:link, a:active {
       a {
-        text-decoration: none!important;
-        -webkit-box-shadow: none!important;
-        box-shadow: none!important;
+        text-decoration: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
       }
-    
+
       .tag {
         display: inline-block;
         margin: 0.5rem;
         border: 1px solid @text-color;
-        padding: 0.3rem;  
-      }
-    }
-
-    // small devices
-    @media (max-width: 350px) {
-      .gatsby-highlight {
-        width: 25rem;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .twitter-tweet {
-        width: 25rem !important;
-        margin-left: auto;
-        margin-right: auto;
-        height: auto;
-        overflow: auto;
-      }
-    }
-
-    @media (max-width: 575.98px) {
-      .gatsby-highlight {
-        width: 30rem;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .twitter-tweet {
-        width: 30rem !important;
-        margin-left: auto;
-        margin-right: auto;
-        height: auto;
-        overflow: auto;
-      }
-    }
-
-    @media (min-width: 576px) and (max-width: 767.98px) {
-      .gatsby-highlight {
-        width: 50rem;
-        margin-left: auto;
-        margin-right: auto;
+        padding: 0.3rem;
       }
     }
   }
