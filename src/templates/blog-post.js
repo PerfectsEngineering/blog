@@ -30,12 +30,12 @@ const postsLayout = {
     span: 24,
   },
   md: {
-    span: 20,
-    offset: 1,
+    span: 18,
+    offset: 3,
   },
   lg: {
-    span: 18,
-    offset: 2,
+    span: 16,
+    offset: 4,
   },
 }
 

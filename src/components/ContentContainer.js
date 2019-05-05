@@ -7,11 +7,11 @@ const defaultLayout = {
   },
   md: {
     span: 20,
-    offset: 1,
+    offset: 2,
   },
   lg: {
     span: 18,
-    offset: 2,
+    offset: 3,
   },
 }
 
