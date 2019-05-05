@@ -17,7 +17,8 @@ import { ContentContainer } from '../components/ContentContainer'
 import SubscriptionForm from '../components/SubscriptionForm'
 import { getFeatureImage } from '../utils/posts'
 import { SocialShare } from '../components/SocialShare'
-import { withBaseUrl } from '../utils/app';
+import { withBaseUrl } from '../utils/app'
+import { Comments } from '../components/Comments'
 
 // styles
 
@@ -140,12 +141,16 @@ class BlogPostTemplate extends React.Component {
                 justify="space-between"
                 gutter={{ xs: 0, sm: 0, md: 16, lg: 24 }}
               >
-                {similarPosts.map((post, i) => (
+                {similarPosts.map((similarPost, i) => (
                   <Col {...postsExcerptLayout} key={i}>
-                    <PostExcerpt {...post} />
+                    <PostExcerpt {...similarPost} />
                   </Col>
                 ))}
               </Row>
+
+              <Divider />
+
+              <Comments post={post} />
             </ContentContainer>
           </div>
         </div>
