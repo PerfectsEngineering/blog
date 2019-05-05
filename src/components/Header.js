@@ -92,51 +92,49 @@ export class Header extends React.Component {
   render() {
     const { location, title } = this.props
     const rootPath = `${__PATH_PREFIX__}/`
-    let header
+    const socialLink = siteConfig.siteMetadata.social
+    let menu
 
     if (location.pathname === rootPath) {
-      header = (
-        <h1
-          style={{
-            ...scale(1.0),
-            marginBottom: rhythm(1.0),
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h1>
+      menu = (
+        <React.Fragment>
+          <Icon
+            component={DarkModeSvg}
+            className="to-dark"
+            onClick={toggleDarkOrLightTheme}
+          />
+          <Icon
+            component={LightModeSvg}
+            className="to-light"
+            onClick={toggleDarkOrLightTheme}
+          />
+          <a href={socialLink.twitter} target="_blank">
+            <Icon type="twitter" />
+          </a>
+          <a href={socialLink.youtube} target="_blank">
+            <Icon type="youtube" theme="filled" />
+          </a>
+          <a href={socialLink.linkedin} target="_blank">
+            <Icon type="linkedin" theme="filled" />
+          </a>
+        </React.Fragment>
       )
     } else {
-      header = (
-        <h3
-          style={{
-            fontFamily: `Montserrat, sans-serif`,
-            marginTop: 0,
-          }}
-        >
-          <Link
-            style={{
-              boxShadow: `none`,
-              textDecoration: `none`,
-              color: `inherit`,
-            }}
-            to={`/`}
-          >
-            {title}
-          </Link>
-        </h3>
+      menu = (
+        <React.Fragment>
+          <Icon
+            component={DarkModeSvg}
+            className="to-dark"
+            onClick={toggleDarkOrLightTheme}
+          />
+          <Icon
+            component={LightModeSvg}
+            className="to-light"
+            onClick={toggleDarkOrLightTheme}
+          />
+        </React.Fragment>
       )
     }
-    const socialLink = siteConfig.siteMetadata.social
 
     return (
       <Row type="flex">
@@ -147,49 +145,16 @@ export class Header extends React.Component {
             justify="space-between"
             align="middle"
           >
-            <Col md={12} xs={22} className="logo">
+            <Col span={12} className="logo">
               <Link to={`/`}>
                 <img src={peLogo} /> <span>BLOG</span>
               </Link>
             </Col>
-            <Col xs={2} md={0}>
-            <Icon
-              component={DarkModeSvg}
-              className="to-dark"
-              onClick={toggleDarkOrLightTheme}
-            />
-            <Icon
-              component={LightModeSvg}
-              className="to-light"
-              onClick={toggleDarkOrLightTheme}
-            />
-            </Col>
-            <Col md={12} xs={0}>
+            <Col span={12}>
               <Row type="flex" justify="end">
-                <Col className="social-icons">
-                  <Icon
-                    component={DarkModeSvg}
-                    className="to-dark"
-                    onClick={toggleDarkOrLightTheme}
-                  />
-                  <Icon
-                    component={LightModeSvg}
-                    className="to-light"
-                    onClick={toggleDarkOrLightTheme}
-                  />
-                  <a href={socialLink.twitter} target="_blank">
-                    <Icon type="twitter" />
-                  </a>
-                  <a href={socialLink.youtube} target="_blank">
-                    <Icon type="youtube" theme="filled" />
-                  </a>
-                  <a href={socialLink.linkedin} target="_blank">
-                    <Icon type="linkedin" theme="filled" />
-                  </a>
-                </Col>
+                <Col className="social-icons">{menu}</Col>
               </Row>
             </Col>
-            <Col />
           </Row>
         </Col>
       </Row>

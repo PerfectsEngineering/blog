@@ -1,0 +1,1 @@
+export const withBaseUrl = (path) => `${process.env.WEBSITE_URL || 'https://blog.perfects.engineering'}${path}`
