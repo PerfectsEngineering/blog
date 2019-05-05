@@ -16,6 +16,8 @@ import {
 import { ContentContainer } from '../components/ContentContainer'
 import SubscriptionForm from '../components/SubscriptionForm'
 import { getFeatureImage } from '../utils/posts'
+import { SocialShare } from '../components/SocialShare'
+import { withBaseUrl } from '../utils/app';
 
 // styles
 
@@ -37,25 +39,23 @@ const postsLayout = {
 }
 
 const buildSeoImageMeta = post => {
-  const seoImageSrc = get(
+  const seoImagePath = get(
     post,
     'frontmatter.featureImage.childImageSharp.sizes.src'
   )
-  
-  if (!seoImageSrc) {
+
+  if (!seoImagePath) {
     return []
   }
 
-  const websiteUrl = process.env.WEBSITE_URL || 'https://blog.perfects.engineering'
-
   const twitterImage = {
     name: 'twitter:image',
-    content: `${websiteUrl}${seoImageSrc}`,
+    content: withBaseUrl(seoImagePath),
   }
 
   const facebookImage = {
     name: 'og:image',
-    content: `${websiteUrl}${seoImageSrc}`,
+    content: withBaseUrl(seoImagePath),
   }
 
   return [twitterImage, facebookImage]
@@ -112,6 +112,8 @@ class BlogPostTemplate extends React.Component {
                 dangerouslySetInnerHTML={{ __html: post.html }}
               />
               <Tags tags={post.frontmatter.tags} />
+              <SocialShare post={post} />
+
               <Divider />
               <Row type="flex" justify="center">
                 <Col xs={24} md={12}>
@@ -131,7 +133,7 @@ class BlogPostTemplate extends React.Component {
                   textAlign: 'center',
                 }}
               >
-                ALSO, YOU SHOULD READ THESE POSTS
+                ALSO, YOU SHOULD READ THESE ARTICLES
               </h3>
               <Row
                 type="flex"
@@ -169,6 +171,7 @@ export const pageQuery = graphql`
         readingTime {
           text
         }
+        slug
       }
       html
       frontmatter {

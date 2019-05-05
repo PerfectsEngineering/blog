@@ -3,9 +3,9 @@ import Img from 'gatsby-image';
 import get from 'lodash/get';
 
 import defaultPostImage from '../img/black-image-icons.jpg';
+import { withBaseUrl } from './app';
 
 const style = {
-  // width: '100%',
   height: '20rem'
 }
 
@@ -30,4 +30,8 @@ export function getFeatureImage(postNode, extraStyle = {}) {
       ...extraStyle
     }} 
   />
+}
+
+export function getPostUrl(postNode) {
+  return withBaseUrl(`/${postNode.fields.slug}`);
 }
