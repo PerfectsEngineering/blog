@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 import { Col, Icon, Row } from 'antd'
 
 // Utilities
-import { rhythm, scale } from '../utils/typography'
 import { toggleDarkOrLightTheme } from '../utils/theme'
 import siteConfig from '../../gatsby-config'
 
@@ -95,46 +94,49 @@ export class Header extends React.Component {
     const socialLink = siteConfig.siteMetadata.social
     let menu
 
-    if (location.pathname === rootPath) {
-      menu = (
-        <React.Fragment>
-          <Icon
-            component={DarkModeSvg}
-            className="to-dark"
-            onClick={toggleDarkOrLightTheme}
-          />
-          <Icon
-            component={LightModeSvg}
-            className="to-light"
-            onClick={toggleDarkOrLightTheme}
-          />
-          <a href={socialLink.twitter} target="_blank">
-            <Icon type="twitter" />
-          </a>
-          <a href={socialLink.youtube} target="_blank">
-            <Icon type="youtube" theme="filled" />
-          </a>
-          <a href={socialLink.linkedin} target="_blank">
-            <Icon type="linkedin" theme="filled" />
-          </a>
-        </React.Fragment>
-      )
-    } else {
-      menu = (
-        <React.Fragment>
-          <Icon
-            component={DarkModeSvg}
-            className="to-dark"
-            onClick={toggleDarkOrLightTheme}
-          />
-          <Icon
-            component={LightModeSvg}
-            className="to-light"
-            onClick={toggleDarkOrLightTheme}
-          />
-        </React.Fragment>
-      )
-    }
+    // if (location.pathname === rootPath) {
+    //   menu = (
+    //     <React.Fragment>
+    //       <Icon
+    //         component={DarkModeSvg}
+    //         className="to-dark"
+    //         onClick={toggleDarkOrLightTheme}
+    //       />
+    //       <Icon
+    //         component={LightModeSvg}
+    //         className="to-light"
+    //         onClick={toggleDarkOrLightTheme}
+    //       />
+    //       <a href={socialLink.twitter} target="_blank">
+    //         <Icon type="twitter" />
+    //       </a>
+    //       <a href={socialLink.youtube} target="_blank">
+    //         <Icon type="youtube" theme="filled" />
+    //       </a>
+    //       <a href={socialLink.linkedin} target="_blank">
+    //         <Icon type="linkedin" theme="filled" />
+    //       </a>
+    //     </React.Fragment>
+    //   )
+    // } else {
+    menu = (
+      <React.Fragment>
+        <Icon
+          component={DarkModeSvg}
+          className="to-dark"
+          onClick={toggleDarkOrLightTheme}
+        />
+        <Icon
+          component={LightModeSvg}
+          className="to-light"
+          onClick={toggleDarkOrLightTheme}
+        />
+        <a href="https://perfects.engineering">
+          <Icon type="home" />
+        </a>
+      </React.Fragment>
+    )
+    // }
 
     return (
       <Row type="flex">
