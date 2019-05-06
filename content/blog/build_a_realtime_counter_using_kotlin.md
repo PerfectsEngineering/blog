@@ -1,7 +1,7 @@
 ---
 title: Build a realtime counter using Kotlin
 date: '2017-12-09T22:12:03.284Z'
-tags: ["android", "pusher", "realtime", "kotlin"]
+tags: ["android", "pusher", "realtime", "kotlin", "tutorial"]
 featureImage: ../assets/build_a_realtime_counter_using_kotlin.png
 followUpPosts: []
 ---

@@ -1,7 +1,7 @@
 ---
 title: Build a typing indicator with RxJs and Pusher
 date: '2017-08-22T22:12:03.284Z'
-tags: ["javascript", "rxjs", "pusher"]
+tags: ["javascript", "rxjs", "pusher", "tutorial"]
 featureImage: ../assets/build_a_typing_indicator_with_rxjs.jpg
 followUpPosts: ["build_a_typing_indcator_in_android"]
 ---
@@ -22,7 +22,7 @@ We would be using [Pusher](https://pusher.com/) for the real-time features of th
 
 If you already have an account, log in to the dashboard and click on the `Create new app` button in the `Your apps` to the left. Select VanillaJS for the front-end tech and Node.js for the backend tech. Don't worry, the tech stack you select doesn't matter, you can always change it later. Its purpose is to generate starter code that you can use to start communicating with Pusher.
 
-After creating the application, go to the `App Keys` tab and copy your ****App ID****, ****Key****, and ****Secret**** credentials. We will use them later in the tutorial.
+After creating the application, go to the `App Keys` tab and copy your **App ID**, **Key**, and **Secret** credentials. We will use them later in the tutorial.
 
 ## 1. Setup the Node.js Server
 
