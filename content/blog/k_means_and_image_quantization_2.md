@@ -7,9 +7,9 @@ followUpPosts: ["k_means_and_image_quantization_1"]
 ---
 
 
-> This is the second part of a two part tutorial series. If you are yet to read the first part, I recommend you start from [there](../k_means_and_image_quantization_1.md).
+> This is the second part of a two part tutorial series. If you are yet to read the first part, I recommend you start from [there](../k_means_and_image_quantization_1).
 
-In [part 1](../k_means_and_image_quantization_1.md), I explained what K Means is all about and highlighted the basic algorithm to perform K Means clustering. In this part, I’m going to show a practical example of K Means application in the real world. This application would be Image Quantization on Color Images. This is usually referred to as Color Image Quantization or just Color Quantization.
+In [part 1](../k_means_and_image_quantization_1), I explained what K Means is all about and highlighted the basic algorithm to perform K Means clustering. In this part, I’m going to show a practical example of K Means application in the real world. This application would be Image Quantization on Color Images. This is usually referred to as Color Image Quantization or just Color Quantization.
 
 ## First, a quick history on Color Image Quantization
 
