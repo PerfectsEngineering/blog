@@ -1,6 +1,6 @@
 ---
 title: Welcome
-date: '2019-05-1T22:12:03.284Z'
+date: '2019-05-01T22:12:03.284Z'
 tags: ["introduction"]
 featureImage: ../assets/welcome.jpg
 ---
