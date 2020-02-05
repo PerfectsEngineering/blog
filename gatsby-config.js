@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: '__GATSBY_IPFS_PATH_PREFIX__',
   siteMetadata: {
     title: `Perfects.Engineering Blog`,
     author: `Perfect Makanju`,
@@ -89,6 +90,7 @@ module.exports = {
       options: {
         javascriptEnabled: true
       }
-    }
+    },
+    'gatsby-plugin-ipfs',
   ],
 }
