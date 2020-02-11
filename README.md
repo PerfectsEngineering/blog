@@ -4,7 +4,7 @@
   </a>
 </p>
 <h1 align="center">
-  Perfect Engineering's Blog site
+  Perfect Engineering's Blog site.
 </h1>
 
 
