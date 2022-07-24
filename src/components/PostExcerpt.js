@@ -111,7 +111,7 @@ export function PostReadTime({ post }) {
   return (
     <span className="post-read-time">
       <TagLink tag={firstTag}>{upperCase(firstTag)}</TagLink> .{' '}
-      {upperCase(post.fields.readingTime.text)}
+      {/* {upperCase(post.fields.readingTime.text)} */}
     </span>
   )
 }

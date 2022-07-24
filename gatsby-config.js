@@ -7,7 +7,7 @@ module.exports = {
     social: {
       twitter: `https://twitter.com/perfectmak`,
       youtube: `https://youtube.perfects.engineering`,
-      linkedin: `https://linkedin.com/in/perfectmak`
+      linkedin: `https://linkedin.com/in/perfectmak`,
     },
   },
   plugins: [
@@ -44,13 +44,24 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              showLineNumbers: true
-            }
+              showLineNumbers: true,
+            },
           },
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
-          `gatsby-remark-reading-time`,
         ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-readingtime`,
+      options: {
+        config: {},
+        types: {
+          WpPost: (source) => {
+            const { blocks } = source
+            return blocks.map((block) => block.saveContent).join('')
+          },
+        },
       },
     },
     `gatsby-transformer-sharp`,
@@ -61,7 +72,58 @@ module.exports = {
         trackingId: process.env.GA_TRACKING_ID,
       },
     },
-    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata { title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.nodes.map((node) => {
+                return Object.assign({}, node.frontmatter, {
+                  description: node.excerpt,
+                  date: node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + node.fields.slug,
+                  custom_elements: [{ 'content:encoded': node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  nodes {
+                    excerpt
+                    html
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                      date
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+            title: "Perfect Engineerings' Blog RSS Feed",
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -87,8 +149,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-less`,
       options: {
-        javascriptEnabled: true
-      }
-    }
+        lessOptions: {
+          javascriptEnabled: true,
+        },
+      },
+    },
   ],
 }

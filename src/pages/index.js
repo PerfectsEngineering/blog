@@ -11,7 +11,7 @@ import {
   postsExcerptLayout,
 } from '../components/PostExcerpt'
 import { ContentContainer } from '../components/ContentContainer'
-import SubscriptionForm from '../components/SubscriptionForm';
+import SubscriptionForm from '../components/SubscriptionForm'
 
 const featuredPostExcerptLayout = {
   sm: {
@@ -86,7 +86,7 @@ class BlogIndex extends React.Component {
                 justify="space-between"
                 gutter={{ xs: 0, sm: 0, md: 16, lg: 24 }}
               >
-                {_.slice(posts, 1).map(post => (
+                {_.slice(posts, 1).map((post) => (
                   <Col key={post.node.fields.slug} {...postsExcerptLayout}>
                     <PostExcerpt {...post} />
                   </Col>
@@ -120,9 +120,6 @@ export const pageQuery = graphql`
           excerpt
           fields {
             slug
-            readingTime {
-              text
-            }
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")

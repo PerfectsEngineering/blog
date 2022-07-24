@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button, Col, Form, Input, Row } from 'antd'
 
-const FormItem = Form.Item;
+const FormItem = Form.Item
 
 class SubscriptionForm extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.onSubmitSubscription = this.onSubmitSubscription.bind(this);
+    this.onSubmitSubscription = this.onSubmitSubscription.bind(this)
   }
 
   onSubmitSubscription(_ev) {
@@ -15,8 +15,6 @@ class SubscriptionForm extends React.Component {
   }
 
   render() {
-    const { form } = this.props;
-    const { getFieldDecorator } = form;
     return (
       <Form
         action="https://engineering.us18.list-manage.com/subscribe/post?u=873b69653f5285d85916d6c66&amp;id=3d889e9f35"
@@ -26,14 +24,9 @@ class SubscriptionForm extends React.Component {
         <div>Get updates about new articles.</div>
         <Row>
           <Col span={24}>
-          <FormItem>
-            {getFieldDecorator('EMAIL', {
-              type: 'email'
-            })(
+            <FormItem name="email" type="email">
               <Input name="EMAIL" placeholder="Enter your email address" />
-            )}
-          
-          </FormItem>
+            </FormItem>
           </Col>
         </Row>
         <input
@@ -52,4 +45,4 @@ class SubscriptionForm extends React.Component {
   }
 }
 
-export default Form.create()(SubscriptionForm);
+export default SubscriptionForm
