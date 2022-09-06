@@ -25,19 +25,19 @@ const TagsPage = ({
     <SEO title="Tags" description="Post Tags/Categories" />
     <Row type="flex">
       <Col span={20} offset={1}>
-        <h1 style={{ textAlign: 'center' }} >List of Post Tags</h1>
+        <h1 style={{ textAlign: 'center' }}>List of Post Tags</h1>
         <div className="tags-container">
-          {group.map(tag => (
+          {group.map((tag) => (
             <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
               <span className="tag" key={tag.fieldValue}>
                 {tag.fieldValue} ({tag.totalCount})
               </span>
             </Link>
           ))}
-        </div>  
+        </div>
       </Col>
     </Row>
-    
+
     <hr
       style={{
         marginBottom: rhythm(1),

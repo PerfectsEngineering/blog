@@ -39,7 +39,7 @@ class TagPosts extends React.Component {
                 justify="space-between"
                 gutter={{ xs: 0, sm: 0, md: 16, lg: 24 }}
               >
-                {posts.map(post => (
+                {posts.map((post) => (
                   <Col {...postsExcerptLayout}>
                     <PostExcerpt {...post} />
                   </Col>
@@ -56,7 +56,7 @@ class TagPosts extends React.Component {
 export default TagPosts
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query ($tag: String) {
     site {
       siteMetadata {
         title
@@ -73,9 +73,6 @@ export const pageQuery = graphql`
           excerpt
           fields {
             slug
-            readingTime {
-              text
-            }
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
@@ -83,8 +80,8 @@ export const pageQuery = graphql`
             tags
             featureImage {
               childImageSharp {
-                sizes(maxWidth: 630) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 630) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

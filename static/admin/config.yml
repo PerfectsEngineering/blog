@@ -2,24 +2,25 @@ backend:
   name: git-gateway
   branch: master
 
-display_url: https://blog.perfect.engineering
+display_url: https://blog.perfects.engineering
 
 publish_mode: editorial_workflow
-media_folder: "content/assets"
-public_folder: "/static/"
+media_folder: 'content/assets'
+public_folder: '/static/'
 
 collections:
-  - name: "blog" # Used in routes, e.g., /admin/collections/blog
+  - name: 'blog' # Used in routes, e.g., /admin/collections/blog
     description: "Blogs currently posted on Perfect Engineering's Blog"
-    label: "Blog" # Used in the UI
-    folder: "content/blog" # The path to the folder where the documents are stored
+    label: 'Blog' # Used in the UI
+    folder: 'content/blog' # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: '{{year}}-{{month}}-{{day}}_{{field.slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
-      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Tags", name: "tags", widget: "list"}
-      - {label: "Follow up Posts", name: "followUpPosts", widget: "list"}
-      - {label: "Feature Image", name: "featureImage", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'blog' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
+      - { label: 'Follow up Posts', name: 'followUpPosts', widget: 'list' }
+      - { label: 'Feature Image', name: 'featureImage', widget: 'image' }
+      - { label: 'Slug', name: 'slug', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }

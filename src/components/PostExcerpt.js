@@ -37,7 +37,7 @@ export const postsExcerptLayout = {
 }
 
 function ExcerptBody({ post }) {
-  const title = post.frontmatter.title || post.fields.slug
+  const title = post.frontmatter.title || post.frontmatter.slug
   const maxHeight = '22rem'
   return (
     <div style={{ height: maxHeight, maxHeight, verticalAlign: 'middle' }}>
@@ -45,13 +45,13 @@ function ExcerptBody({ post }) {
         <PostReadTime post={post} />
       </div>
       <h3 title={title} style={{ marginBottom: '2rem' }}>
-        <Link style={{ boxShadow: 'none' }} to={post.fields.slug}>
+        <Link style={{ boxShadow: 'none' }} to={post.frontmatter.slug}>
           {truncate(title, { length: '55' })}
         </Link>
       </h3>
       <p className="post-excerpt">
         <span dangerouslySetInnerHTML={{ __html: post.excerpt }} />{' '}
-        <Link to={post.fields.slug}>Read more</Link>
+        <Link to={post.frontmatter.slug}>Read more</Link>
       </p>
 
       <PostDate post={post} />
@@ -66,13 +66,13 @@ function ExcerptBody({ post }) {
  */
 export function PostExcerpt({ node }) {
   const cover = (
-    <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+    <Link style={{ boxShadow: `none` }} to={node.frontmatter.slug}>
       {getFeatureImage(node)}
     </Link>
   )
   return (
     <Card
-      key={node.fields.slug}
+      key={node.frontmatter.slug}
       bordered={false}
       cover={cover}
       style={{ marginBottom: '2rem' }}
@@ -94,7 +94,7 @@ export function FeaturedPostExcerpt({ node }) {
     >
       <Row type="" className="featured-post">
         <Col {...featuredPostExcerptLayout}>
-          <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+          <Link style={{ boxShadow: `none` }} to={node.frontmatter.slug}>
             {getFeatureImage(node, { height: '30rem' })}
           </Link>
         </Col>
@@ -111,7 +111,7 @@ export function PostReadTime({ post }) {
   return (
     <span className="post-read-time">
       <TagLink tag={firstTag}>{upperCase(firstTag)}</TagLink> .{' '}
-      {upperCase(post.fields.readingTime.text)}
+      {/* {upperCase(post.fields.readingTime.text)} */}
     </span>
   )
 }

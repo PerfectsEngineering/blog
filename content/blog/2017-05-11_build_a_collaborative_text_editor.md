@@ -3,6 +3,7 @@ title: Build a collaborative text editor in Android
 date: '2017-05-11T22:12:03.284Z'
 tags: ["android", "java", "realtime", "tutorial", "pusher"]
 featureImage: ../assets/build_a_typing_indicator_in_android.jpg
+slug: build_a_collaborative_text_editor
 followUpPosts: []
 ---
 

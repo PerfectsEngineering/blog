@@ -39,7 +39,7 @@ const postsLayout = {
   },
 }
 
-const buildSeoImageMeta = post => {
+const buildSeoImageMeta = (post) => {
   const seoImagePath = get(
     post,
     'frontmatter.featureImage.childImageSharp.sizes.src'
@@ -173,9 +173,6 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       fields {
-        readingTime {
-          text
-        }
         slug
       }
       html
@@ -183,10 +180,11 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        slug
         featureImage {
           childImageSharp {
-            sizes(maxWidth: 630) {
-              ...GatsbyImageSharpSizes
+            fluid(maxWidth: 630) {
+              ...GatsbyImageSharpFluid
             }
           }
         }

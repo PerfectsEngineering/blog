@@ -1,14 +1,15 @@
 ---
 layout: blog
 title: Quick C++ Input Stream Explanation
-tags: ["tutorial", "tips", "cplusplus"]
+tags: ['tutorial', 'tips', 'cplusplus']
 date: 2018-02-26T00:32:25.607Z
+slug: quick_cpp_input_stream_explanation
 featureImage: ../assets/cpp_tip.jpg
 ---
+
 This post is written to address this question raised on twitter:
 
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I am having a challenge reading multiple ints line by line.<br><br>Sample:<br>1 2 3 4 5<br>6 7 8 9 10<br><br>The code I have reads all the lines at once 😰  - <a href="https://t.co/svcDprbcPk">https://t.co/svcDprbcPk</a><br><br>I am trying to solve this - <a href="https://t.co/hvrrWhEGA0">https://t.co/hvrrWhEGA0</a> <br>cc <a href="https://twitter.com/waleoyediran?ref_src=twsrc%5Etfw">@waleoyediran</a> <a href="https://twitter.com/Perfectmak?ref_src=twsrc%5Etfw">@Perfectmak</a></p>&mdash; Goke Obasa (@goke_) <a href="https://twitter.com/goke_/status/968187808220372992?ref_src=twsrc%5Etfw">February 26, 2018</a></blockquote>
-
 
 The issue is with the way the different c++ input stream readers/extractors work internally. Basically the various input stream operators/functions (>>, getchar, getline, etc) internally move a pointer along the input source to indicate where they last stopped reading.
 

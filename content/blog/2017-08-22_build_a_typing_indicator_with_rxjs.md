@@ -3,6 +3,7 @@ title: Build a typing indicator with RxJs and Pusher
 date: '2017-08-22T22:12:03.284Z'
 tags: ["javascript", "rxjs", "pusher", "tutorial"]
 featureImage: ../assets/build_a_typing_indicator_with_rxjs.jpg
+slug: build_a_typing_indicator_with_rxjs
 followUpPosts: ["build_a_typing_indcator_in_android"]
 ---
 

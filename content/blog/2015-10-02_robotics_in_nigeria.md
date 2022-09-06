@@ -1,7 +1,8 @@
 ---
-title: "Robotics in Nigeria: My “Eye Opening” Trip to the World Robotics Olympiad (WRO) Finals in Nigeria"
+title: 'Robotics in Nigeria: My “Eye Opening” Trip to the World Robotics Olympiad (WRO) Finals in Nigeria'
 date: '2015-10-02T22:12:03.284Z'
-tags: ["robotics"]
+tags: ['robotics']
+slug: robotics_in_nigeria
 featureImage: ../assets/ilab_roc_2015.jpg
 ---
 
@@ -14,29 +15,29 @@ I’ll be running through the major categories and some of their participants pr
 <hr/>
 
 There were two categories:
+
 ### 1. The Open Category:
 
 In this category, contestants are to come with their own Robotics project. Judges would judge based on how useful the Robotics project is to humanity (and some other parameters). And this is open to all age categories.
 
 A lot of groups entered for this category, but I’ll be talking about a few that caught my eyes.
 
-- ***An assembly plant. Mini assembly plant that was built with Lego Robotics.***
+-   **_An assembly plant. Mini assembly plant that was built with Lego Robotics._**
 
 ![Lego Mini Assembly Plan](https://cdn-images-1.medium.com/max/1600/1*mHdW3HorxWutJcdEK_CSwQ.jpeg)
 
-- ***A six legged robot that can navigate through obstacles.***
+-   **_A six legged robot that can navigate through obstacles._**
 
 ![Six legged robot](https://cdn-images-1.medium.com/max/1600/1*cdtr7To-Aa1-v88oq9Zzmw.jpeg)
 
-- ***I really don’t know what this is called, but it seems to be some sort of excavation bot with some killer blades.***
+-   **_I really don’t know what this is called, but it seems to be some sort of excavation bot with some killer blades._**
 
 ![Unknown robot](https://cdn-images-1.medium.com/max/1600/1*49vlKt0TdM9ZCO8PmQzGbA.jpeg)
-*Emphasis on the killer blades :D*
+_Emphasis on the killer blades :D_
 
-- ***A robot that can be used to explore a volcano. The robot can be used to collect soil samples and it is also equipped with an android phone that is used to transmit live video feed.***
+-   **_A robot that can be used to explore a volcano. The robot can be used to collect soil samples and it is also equipped with an android phone that is used to transmit live video feed._**
 
 ![Volcano exploring robot](https://cdn-images-1.medium.com/max/1600/1*EKMnc9SFcG0lgV4Z8qKDfQ.jpeg)
-
 
 ### 2. Junior Category:
 
@@ -56,6 +57,7 @@ I’ll love to comment especially on the last arena shown above, it was called �
 <hr/>
 
 ### My Reflection on the Event
+
 I feel that there is still a lot of work to be done on our Nigerian Students as it is arguable that most of the constructs at the competition were copied online. But I feel this challenge can be overcome if students were actually given proper knowledge on how to research, tweak and experiment with their robots and not rely on the fact that there is an expert somewhere that already knows how to get the job done.
 
 This is my first time of attending a Robotics competition, most especially one for High School Students and I must say that I’m impressed by what Nigeria students have been able to pull off.
