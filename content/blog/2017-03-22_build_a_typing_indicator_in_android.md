@@ -3,6 +3,7 @@ title: Build a typing indicator in Android using Pusher
 date: '2017-03-22T22:12:03.284Z'
 tags: ["android", "pusher", "realtime", "chat", "tutorial", "java"]
 featureImage: ../assets/build_a_typing_indicator_in_android.jpg
+slug: build_a_typing_indicator_in_android
 followUpPosts: ["build_a_typing_indcator_with_rxjs"]
 ---
 

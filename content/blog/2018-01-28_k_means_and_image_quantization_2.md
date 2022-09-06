@@ -1,11 +1,11 @@
 ---
 title: K Means and Image Quantization [Part 2]
 date: '2018-01-28T20:12:03.284Z'
-tags: ["algorithms", "kMeans", "machine learning"]
+tags: ['algorithms', 'kMeans', 'machine learning']
 featureImage: ../assets/k_mean_part_2_cover.jpg
-followUpPosts: ["k_means_and_image_quantization_1"]
+slug: k_means_and_image_quantization_2
+followUpPosts: ['k_means_and_image_quantization_1']
 ---
-
 
 > This is the second part of a two part tutorial series. If you are yet to read the first part, I recommend you start from [there](../k_means_and_image_quantization_1).
 
@@ -34,7 +34,6 @@ Let us consider the 4x4 pixel image below for color quantization:
 ![4x4 pixel Image](../assets/4_by_4_pixel.png)
 
 Each of the square section represents a color pixel. These pixel colors are usually represented as a combination of 8 bits Red (R), Green (G) and Blue (B) value. So the above 4 by 4 pixel image can be displayed as an array of (R, G, B) vectors as shown below:
-
 
 ![(R, G, B) representation of the 4x4 pixel Image](../assets/rgb_of_4x4_pixel.png)
 
@@ -86,10 +85,10 @@ So from our example in step 3 above, we can see that the distance D1 is smaller 
 
 This remapping process would then create an image that is similar to the original image, but only with ‘K’ colors.
 
-
 ![Result of applying the Quantization algorithm on the Consonance Logo](../assets/quantized_array_of_consonance_logo.png)
 
 ### Quick implementation in Javascript (Node.js)
+
 In the first part of this post, I asked readers to vote on which programming language I should use to implement image quantization and there was a tie between Javascript and Python. I decided to use Javascript because there are fewer sample implementations of image quantization in Javascript than Python.
 
 Before I begin with the implementation, I won’t be showing the specifics of how to load and extract colors from an image as there are many ways this can be achieved. In this post, I’ll focus more on the quantization process for the colors in the image. You can see a complete implementation which contains all the image loading and saving code [here](https://github.com/perfectmak/ImageQuantizationUsingJS).
@@ -121,7 +120,6 @@ function quantize(k, colors) {
 }
 ```
 
-
 For simplicity, `getRandomKCenters()` in this case just uses lodash’s [`sampleSize()`](https://lodash.com/docs#sample) function to select the center colors from the colors array, but you can use a more complex algorithm to get your centers.
 
 Next, we need to calculate the distance of each color in the array to the selected centers and re-map the closest center to that color. Let’s take a look at the code for this:
@@ -129,7 +127,7 @@ Next, we need to calculate the distance of each color in the array to the select
 ```javascript
 function quantize(k, colors) {
   ...
-  
+
   const centerDistances = new Array(k)
   for(let i = 0; i < colors.length; i++) {
       for(let j = 0; j < centers.length; j++) {
@@ -143,48 +141,47 @@ function quantize(k, colors) {
 }
 ```
 
-
 First, a `centerDistances` array is initialized to hold the distances of a particular color to each center. Then we loop through each color and for each of those colors, we calculate the distances between each center and that color. The calculated distances are stored in the `centerDistances` array. After calculating the distances, we find the center with the minimum distance and assign (re-map) that center to the original color at that position.
 
 The `distance()` function calculates the euclidean distance between two colors of RGB values. Below is its implementation:
 
 ```javascript
 function distance(color1, color2) {
-    const [ r1, g1, b1 ] = color1
-    const [ r2, g2, b2 ] = color2
-    return Math.sqrt(
-        Math.pow(r1 - r2, 2) + Math.pow(g1 - g2, 2) + Math.pow(b1 - b2, 2)
-    )
+  const [r1, g1, b1] = color1
+  const [r2, g2, b2] = color2
+  return Math.sqrt(
+    Math.pow(r1 - r2, 2) + Math.pow(g1 - g2, 2) + Math.pow(b1 - b2, 2)
+  )
 }
 ```
-
 
 Then lastly we return the re-mapped color array from the `quantize()` function. The final `quantize()` function now looks like this:
 
 ```javascript
 function quantize(k, colors) {
-    if (k > colors.length) {
-        throw Error(`K (${k}) is greater than colors (${colors.length}).`)
+  if (k > colors.length) {
+    throw Error(`K (${k}) is greater than colors (${colors.length}).`)
+  }
+
+  const centers = getRandomKCenters(k, colors)
+
+  let centerDistances = []
+  for (let i = 0; i < colors.length; i++) {
+    for (let j = 0; j < centers.length; j++) {
+      centerDistances.push(distance(centers[j], colors[i]))
     }
+    const minimumDistance = Math.min(...centerDistances)
+    const nearestCentroidForI = centerDistances.indexOf(
+      Math.min(...centerDistances)
+    )
+    colors[i] = centers[nearestCentroidForI]
 
-    const centers = getRandomKCenters(k, colors)
+    centerDistances.length = 0 // clear distance array
+  }
 
-    let centerDistances = []
-    for(let i = 0; i < colors.length; i++) {
-        for(let j = 0; j < centers.length; j++) {
-            centerDistances.push(distance(centers[j],  colors[i]))
-        }
-        const minimumDistance = Math.min(...centerDistances)
-        const nearestCentroidForI = centerDistances.indexOf(Math.min(...centerDistances))
-        colors[i] = centers[nearestCentroidForI]
-        
-        centerDistances.length = 0 // clear distance array
-    }
-
-    return colors
+  return colors
 }
 ```
-
 
 So that is how you perform color quantization on an image using Nodejs. You can check [here to see the full code](https://github.com/perfectmak/ImageQuantizationUsingJS). You can also clone and test it out locally.
 

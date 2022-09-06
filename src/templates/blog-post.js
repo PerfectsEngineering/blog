@@ -180,6 +180,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        slug
         featureImage {
           childImageSharp {
             fluid(maxWidth: 630) {

@@ -16,7 +16,9 @@ function similarPosts(posts, currentPost, count = 3) {
   const followUpPosts = _.map(
     _.defaultTo(_.get(currentPost, 'node.frontmatter.followUpPosts'), []),
     (followUpPostSlug) =>
-      _.find(posts, (p) => _.includes(p.node.fields.slug, followUpPostSlug))
+      _.find(posts, (p) =>
+        _.includes(p.node.frontmatter.slug, followUpPostSlug)
+      )
   ).filter(_.identity)
 
   if (followUpPosts.length >= count) {
@@ -26,7 +28,7 @@ function similarPosts(posts, currentPost, count = 3) {
   const nonFollowUpPost = _.differenceBy(
     posts,
     followUpPosts,
-    'node.fields.slug'
+    'node.frontmatter.slug'
   )
 
   const filterUnique = _.filter(nonFollowUpPost, (input) => {
@@ -45,7 +47,7 @@ function createBlogPostPages(posts, createPage) {
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
   posts.forEach((post) => {
     createPage({
-      path: post.node.fields.slug,
+      path: post.node.frontmatter.slug,
       component: blogPost,
       context: {
         slug: post.node.fields.slug,
@@ -94,6 +96,7 @@ exports.createPages = ({ graphql, actions }) => {
                 date(formatString: "MMMM DD, YYYY")
                 title
                 tags
+                slug
                 followUpPosts
                 featureImage {
                   childImageSharp {

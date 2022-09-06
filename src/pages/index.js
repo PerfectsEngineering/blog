@@ -59,14 +59,6 @@ class BlogIndex extends React.Component {
         <div style={{ position: 'absolute' }} className="content-container">
           <div style={{ marginTop: '-10rem', position: 'relative' }}>
             <ContentContainer>
-              {/* <Row type="flex" justify="space-around" className="navigation-tabs">
-              <Col sm={0} mm={0} lg={{span: 3, offset: 1}}><TagLink tag={'android'}>ANDROID</TagLink></Col>
-              <Col sm={0} mm={0} lg={3}><TagLink tag={'blockchain'}>BLOCKCHAIN</TagLink></Col>
-              <Col sm={0} mm={0} lg={6}><TagLink tag={'engineering'}>SOFTWARE ENGINEERING</TagLink></Col>
-              <Col sm={0} mm={0} lg={2}><TagLink tag={'node.js'}>NODE.JS</TagLink></Col>
-              <Col sm={0} mm={0} lg={3}><TagLink tag={'algorithms'}>ALGORITHMS</TagLink></Col>
-            </Row> */}
-
               <Row
                 className="container"
                 type="flex"
@@ -124,6 +116,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            slug
             tags
             featureImage {
               childImageSharp {
