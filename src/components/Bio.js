@@ -31,7 +31,7 @@ export function Bio() {
               }}
             />
             <p>
-              Learn about Android, Blockchain and general software engineering tips 😉.
+              Learn Software Engineering Tips😉. How I build Apps and Services.
             </p>
           </div>
         )
