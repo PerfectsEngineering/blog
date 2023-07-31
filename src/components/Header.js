@@ -132,7 +132,7 @@ export class Header extends React.Component {
             className="to-light"
             onClick={toggleDarkOrLightTheme}
           />
-          <a href="https://blog.perfects.engineering">
+          <a href="/">
             <HomeOutlined />
           </a>
         </React.Fragment>

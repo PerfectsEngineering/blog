@@ -86,11 +86,11 @@ class BlogPostTemplate extends React.Component {
               className: 'article-content-container',
               style: {
                 borderRadius: '1rem',
-                padding: '2rem 2rem',
+                padding: '1rem 2rem',
               },
             }}
           >
-            <div style={{ marginBottom: '3rem' }}>
+            <div style={{ marginBottom: '1rem' }}>
               <PostReadTime post={post} />
             </div>
             <h1 className="post-title">{post.frontmatter.title}</h1>
@@ -105,6 +105,7 @@ class BlogPostTemplate extends React.Component {
             </p>
             {getFeatureImage(post, {
               marginBottom: '4rem',
+              aspectRatio: '7/3',
             })}
             <div
               className="blog-post-content"
