@@ -124,6 +124,9 @@ class BlogPostTemplate extends React.Component {
             <br />
 
             <Divider />
+            <Comments post={post} />
+
+            <Divider />
 
             <h3
               style={{
@@ -146,8 +149,7 @@ class BlogPostTemplate extends React.Component {
                 </Col>
               ))}
             </Row>
-            <Divider />
-            <Comments post={post} />
+           
           </ContentContainer>
         </div>
       </Layout>
