@@ -6,7 +6,9 @@ import defaultPostImage from '../img/black-image-icons.jpg';
 import { withBaseUrl } from './app';
 
 const style = {
-  height: '20rem'
+  // height: '20rem'
+  width: '100%',
+  aspectRatio: '7/3',
 }
 
 export function getFeatureImage(postNode, extraStyle = {}) {

@@ -32,7 +32,7 @@ export const postsExcerptLayout = {
     span: 12,
   },
   lg: {
-    span: 8,
+    span: 12,
   },
 }
 
