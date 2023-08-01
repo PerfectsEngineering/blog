@@ -24,19 +24,21 @@ export const SocialShare = ({ post }) => {
   return (
     <Row type="flex" justify="end">
       <Col span={24} style={{ textAlign: 'end' }}>
-        Share this article:
-        <TwitterShareButton url={url} title={message}>
-          <TwitterIcon size={32} round={true} />
-        </TwitterShareButton>
-        <FacebookShareButton url={url} quote={message}>
-          <FacebookIcon size={32} round={true} />
-        </FacebookShareButton>
-        <LinkedinShareButton url={url} title={post.frontmatter.title} description={post.excerpt}>
-          <LinkedinIcon size={32} round={true} />
-        </LinkedinShareButton>
-        <RedditShareButton url={url} title={message}>
-          <RedditIcon size={32} round={true} />
-        </RedditShareButton>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+          Share this article:&nbsp;&nbsp;
+          <TwitterShareButton url={url} title={message}>
+            <TwitterIcon size={32} round={true} />
+          </TwitterShareButton>
+          <FacebookShareButton url={url} quote={message}>
+            <FacebookIcon size={32} round={true} />
+          </FacebookShareButton>
+          <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" className="share-icon">
+            <LinkedinIcon size={32} round={true} />
+          </a>
+          <RedditShareButton url={url} title={message}>
+            <RedditIcon size={32} round={true} />
+          </RedditShareButton>
+        </div>
       </Col>
     </Row>
   )

@@ -13,6 +13,9 @@ import { getFeatureImage } from '../utils/posts'
 import { TagLink } from '../components/Tags'
 
 const featuredPostExcerptLayout = {
+  xs: {
+    span: 24,
+  },
   sm: {
     span: 24,
   },
@@ -32,7 +35,7 @@ export const postsExcerptLayout = {
     span: 12,
   },
   lg: {
-    span: 8,
+    span: 12,
   },
 }
 
@@ -67,7 +70,7 @@ function ExcerptBody({ post }) {
 export function PostExcerpt({ node }) {
   const cover = (
     <Link style={{ boxShadow: `none` }} to={node.frontmatter.slug}>
-      {getFeatureImage(node)}
+      {getFeatureImage(node, { height: '20rem' })}
     </Link>
   )
   return (
@@ -110,8 +113,7 @@ export function PostReadTime({ post }) {
   const firstTag = first(post.frontmatter.tags)
   return (
     <span className="post-read-time">
-      <TagLink tag={firstTag}>{upperCase(firstTag)}</TagLink> .{' '}
-      {/* {upperCase(post.fields.readingTime.text)} */}
+      <TagLink tag={firstTag}>{upperCase(firstTag)}</TagLink> 
     </span>
   )
 }

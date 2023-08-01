@@ -34,15 +34,15 @@ const postsLayout = {
     offset: 3,
   },
   lg: {
-    span: 16,
-    offset: 4,
+    span: 10,
+    offset: 7,
   },
 }
 
 const buildSeoImageMeta = (post) => {
   const seoImagePath = get(
     post,
-    'frontmatter.featureImage.childImageSharp.sizes.src'
+    'frontmatter.featureImage.childImageSharp.fluid.src'
   )
 
   if (!seoImagePath) {
@@ -76,83 +76,82 @@ class BlogPostTemplate extends React.Component {
           keywords={post.frontmatter.tags || []}
           meta={buildSeoImageMeta(post)}
         />
-        {getFeatureImage(post, {
-          marginBottom: '1rem',
-          height: '70vh',
-        })}
+        
         <div
-          // style={{ position: 'absolute' }}
           className="article-content-container"
         >
-          <div style={{ marginTop: '-10rem', position: 'relative' }}>
-            <ContentContainer
-              col={{
-                ...postsLayout,
-                className: 'article-content-container',
-                style: {
-                  borderRadius: '1rem',
-                  padding: '2rem 2rem',
-                },
+          <ContentContainer
+            col={{
+              ...postsLayout,
+              className: 'article-content-container',
+              style: {
+                borderRadius: '1rem',
+                padding: '1rem 2rem',
+              },
+            }}
+          >
+            <div style={{ marginBottom: '1rem' }}>
+              <PostReadTime post={post} />
+            </div>
+            <h1 className="post-title">{post.frontmatter.title}</h1>
+            <p
+              style={{
+                ...scale(1 / 2),
+                display: `block`,
+                marginBottom: rhythm(1),
               }}
             >
-              <div style={{ marginBottom: '3rem' }}>
-                <PostReadTime post={post} />
-              </div>
-              <h1 className="post-title">{post.frontmatter.title}</h1>
-              <p
-                style={{
-                  ...scale(1 / 2),
-                  display: `block`,
-                  marginBottom: rhythm(1),
-                }}
-              >
-                <PostDate post={post} />
-              </p>
-              <div
-                className="blog-post-content"
-                dangerouslySetInnerHTML={{ __html: post.html }}
-              />
-              <Tags tags={post.frontmatter.tags} />
-              <SocialShare post={post} />
+              <PostDate post={post} />
+            </p>
+            {getFeatureImage(post, {
+              marginBottom: '4rem',
+              aspectRatio: '7/3',
+            })}
+            <div
+              className="blog-post-content"
+              dangerouslySetInnerHTML={{ __html: post.html }}
+            />
+            <Tags tags={post.frontmatter.tags} />
+            <SocialShare post={post} />
 
-              <Divider />
-              <Row type="flex" justify="center">
-                <Col xs={24} md={12}>
-                  <SubscriptionForm />
+            <Divider />
+            <Row type="flex" justify="center">
+              <Col xs={24} md={24}>
+                <SubscriptionForm />
+              </Col>
+            </Row>
+
+            <br />
+            <br />
+
+            <Divider />
+            <Comments post={post} />
+
+            <Divider />
+
+            <h3
+              style={{
+                marginTop: '4rem',
+                marginBottom: '4rem',
+                textAlign: 'center',
+                fontWeight: '800',
+              }}
+            >
+              ALSO, YOU SHOULD READ THESE ARTICLES
+            </h3>
+            <Row
+              type="flex"
+              justify="space-between"
+              gutter={{ xs: 0, sm: 0, md: 16, lg: 16 }}
+            >
+              {similarPosts.map((similarPost, i) => (
+                <Col {...postsExcerptLayout} key={i}>
+                  <PostExcerpt {...similarPost} />
                 </Col>
-              </Row>
-
-              <br />
-              <br />
-
-              <Divider />
-
-              <h3
-                style={{
-                  marginTop: '4rem',
-                  marginBottom: '4rem',
-                  textAlign: 'center',
-                }}
-              >
-                ALSO, YOU SHOULD READ THESE ARTICLES
-              </h3>
-              <Row
-                type="flex"
-                justify="space-between"
-                gutter={{ xs: 0, sm: 0, md: 16, lg: 24 }}
-              >
-                {similarPosts.map((similarPost, i) => (
-                  <Col {...postsExcerptLayout} key={i}>
-                    <PostExcerpt {...similarPost} />
-                  </Col>
-                ))}
-              </Row>
-
-              <Divider />
-
-              <Comments post={post} />
-            </ContentContainer>
-          </div>
+              ))}
+            </Row>
+           
+          </ContentContainer>
         </div>
       </Layout>
     )
