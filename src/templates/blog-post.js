@@ -42,7 +42,7 @@ const postsLayout = {
 const buildSeoImageMeta = (post) => {
   const seoImagePath = get(
     post,
-    'frontmatter.featureImage.childImageSharp.sizes.src'
+    'frontmatter.featureImage.childImageSharp.fluid.src'
   )
 
   if (!seoImagePath) {

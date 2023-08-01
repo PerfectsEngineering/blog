@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Perfects.Engineering Blog`,
     author: `Perfect Makanju`,
+    twitterAuthor: '@perfectmak',
     description: `Engineering blog for Perfects.Engineering.`,
     siteUrl: `https://blog.perfects.engineering/`,
     social: {
