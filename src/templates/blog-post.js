@@ -145,7 +145,7 @@ class BlogPostTemplate extends React.Component {
               gutter={{ xs: 0, sm: 0, md: 16, lg: 16 }}
             >
               {similarPosts.map((similarPost, i) => (
-                <Col {...postsExcerptLayout} key={i}>
+                <Col {...postsExcerptLayout} lg={{ span: 12 }} key={i}>
                   <PostExcerpt {...similarPost} />
                 </Col>
               ))}

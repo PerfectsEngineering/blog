@@ -35,7 +35,7 @@ export const postsExcerptLayout = {
     span: 12,
   },
   lg: {
-    span: 12,
+    span: 8,
   },
 }
 
