@@ -67,7 +67,7 @@ Pgbench also outputs the time it takes all the clients to connect to the databas
 
 ![Connection Time Result Chart](../assets/2023_08_01/pg_result_chart_3.png)
 
-These results generally look okay. My significant observation was that the Digitalocean Postgres instance connected faster than others. This may be due to better private network implementations (faster routing) or better machines, but I cannot say for which exactly.\ 
+These results generally look okay. My significant observation was that the Digitalocean Postgres instance connected faster than others. This may be due to better private network implementations (faster routing) or better machines, but I cannot say for which exactly.
 
 The connection time for clients is quite important because this can lead to spikes in the performance of your application when it has to reconnect to the database. Most application frameworks create connection pools to help mitigate this (does PHP support connection pools now? 🫢), so you should ensure your application has one to minimise the chances of these spikes affecting your application.
 
