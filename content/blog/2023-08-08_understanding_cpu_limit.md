@@ -3,7 +3,7 @@ layout: blog
 title: 'Can multiple threads run on less than 1 vCPU in Kubernetes?'
 date: 2023-08-08T09:00:00.569Z
 tags: [docker, kubernetes, cpu]
-featureImage: ../assets/cpu-nodes.webp
+featureImage: ../assets/2023_08_08/banner_container_usage.png
 slug: /kubernetes_multithreading_cpu_limit
 ---
 
@@ -44,7 +44,7 @@ If a thread is not using all of its allocated sections, the CPU scheduler can gi
 
 The CPU `requests` parameter ensures the container can use **at least** the specified number of cores requested. 
 
-You can visualise this as each container is given as many sections on the conveyor belt as they need to run their instructions. For example, think of 1vCPU as the conveyor belt having 10 sections, and if we have two containers, A and B, Container A requests 500m, and Container B requests 100m.
+You can visualise this as each container is given as many sections on the conveyor belt as they need to run their instructions. For example, think of 1vCPU as the conveyor belt having ten sections, and if we have two containers, A and B, Container A requests 500m, and Container B requests 100m.
 
 ![Conveyor Belt Illustration of Container Scheduled with Requests Only](../assets/2023_08_08/cpu_cylcles_container_requests_1.png)
 
