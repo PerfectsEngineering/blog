@@ -68,7 +68,7 @@ To achieve this, the container runtime calculates how long a container can use t
 ## How do Containers recover from Interruptions?
 You may have noticed that when Instructions are scheduled, a particular thread or container will have moments of pauses when its instruction is not actively running. This is even more likely when many Containers or Processes are contending for CPU cycles. 
 
-To ensure that operations can be interrupted and resumed, instructions are usually split up into smaller units. This allows the CPU to keep the state of the last instruction so that it can be resumed when the next instruction is scheduled.
+Instructions are usually split up into smaller units to ensure that operations can be interrupted and resumed. This allows the CPU to keep the state of the last instruction so that it can be resumed when the next instruction is scheduled.
 
 ## Now to Answer the Question about Multi-threading on a single vCPU
 
@@ -88,7 +88,7 @@ handle2.join().unwrap();
 
 When compiling, each of these threads is compiled into its own set of instructions, and they are scheduled to the CPUs available to the program. If we have multiple CPUs available, then the straightforward execution plan would be to schedule each thread's instructions on separate CPUs to ensure they are run in parallel. However, this is different from how Instructions get scheduled in reality. Instead, they are broken down into specific instructions, which are multiplexed across as many CPUs as possible.
 
-So, if we give this program less than 1vCPU (`500m` for example) when running in a container, the two threads' instructions will be broken up and interwoven to run as fast as possible.
+So, if we give this program less than 1vCPU (`500m`, for example) when running in a container, the two threads' instructions will be broken up and interwoven to run as fast as possible.
 
 > This is a follow-up from a Livestream where I walk through a practical explanation of this article. If you prefer visual learning, you can watch that: 
 >
@@ -99,7 +99,21 @@ So, if we give this program less than 1vCPU (`500m` for example) when running in
 
 ## Benefits of Requesting Less Than One vCPU
 
-There are several benefits to requesting less than one vCPU for your containerised applications. Firstly, it optimises resource utilisation by ensuring that your application consumes only the resources it needs, leaving more resources available for other containers running on the same node. This approach can also improve the overall performance of your application, as it reduces the risk of resource contention between containers. Additionally, specifying more granular CPU requests can lead to better scheduling decisions by Kubernetes, as it has a clearer understanding of the actual CPU requirements for each container.
+There are a few benefits of requesting less than 1vCPU in Kubernetes pods:
+
+- **Reduced cost:** Kubernetes nodes are typically provisioned with multiple CPU cores. If you request less than 1vCPU for your pods, you will only be charged for the fraction of a core that you use. This can save you money, especially if you are running a large number of pods.
+- **Improved scalability:** By requesting less than 1vCPU, you can scale your application more easily. If you need to increase the number of pods running, you can do so without having to increase the number of CPU cores on your nodes. This can help you to avoid running out of resources and improve the performance of your application.
+- **Improved availability:** By requesting less than 1vCPU, you can improve the availability of your application. If one node fails, your pods will be able to be rescheduled on other nodes without having to be scaled down. This can help to ensure that your application is always available to users.
+
+Of course, there are also some potential drawbacks to requesting less than 1vCPU. For example, your pods may not be able to achieve the same level of performance as pods that request more CPU. However, the benefits of reduced cost, improved scalability, and improved availability often outweigh these drawbacks.
+
+Here are some additional things to consider when deciding how much CPU to request for your Kubernetes pods:
+
+- The type of application you are running. Some applications are more CPU-intensive than others.
+- The number of pods you are running. The more pods you run, the more CPU you will need.
+- The resources available on your Kubernetes cluster. If you have a limited number of CPU cores, you may need to request less CPU for your pods.
+
+Ultimately, the best way to determine how much CPU to request for your Kubernetes pods is to experiment and see what works best for your application.
 
 ## Conclusion
 
