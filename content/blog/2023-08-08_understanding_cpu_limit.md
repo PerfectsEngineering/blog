@@ -105,9 +105,9 @@ There are a few benefits of requesting less than 1vCPU in Kubernetes pods:
 - **Improved scalability:** By requesting less than 1vCPU, you can scale your application more easily. If you need to increase the number of pods running, you can do so without having to increase the number of CPU cores on your nodes. This can help you to avoid running out of resources and improve the performance of your application.
 - **Improved availability:** By requesting less than 1vCPU, you can improve the availability of your application. If one node fails, your pods will be able to be rescheduled on other nodes without having to be scaled down. This can help to ensure that your application is always available to users.
 
-Of course, there are also some potential drawbacks to requesting less than 1vCPU. For example, your pods may not be able to achieve the same level of performance as pods that request more CPU. However, the benefits of reduced cost, improved scalability, and improved availability often outweigh these drawbacks.
+## Considerations when requesting vCPU Resources
 
-Here are some additional things to consider when deciding how much CPU to request for your Kubernetes pods:
+Of course, there are also some ***potential drawbacks*** to requesting less than 1vCPU. For example, your pods may not be able to achieve the same level of performance as pods that request more CPU. Here are some additional things to consider when deciding how much CPU to request for your Kubernetes pods:
 
 - The type of application you are running. Some applications are more CPU-intensive than others.
 - The number of pods you are running. The more pods you run, the more CPU you will need.
