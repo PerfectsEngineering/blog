@@ -19,17 +19,8 @@ We would also be using the following input to explain how each one works.
 
 ```
 2\n
-```
-
-```
 ^
-```
-
-```
 1 2 3\n
-```
-
-```
 6 7 8\n
 ```
 
@@ -53,17 +44,8 @@ So if we define x as an int and we call cin >> x; on our test input from above, 
 
 ```
 2\n
-```
-
-```
  ^
-```
-
-```
 1 2 3\n
-```
-
-```
 6 7 8\n
 ```
 
@@ -71,17 +53,8 @@ So if we define x as an int and we call cin >> x; on our test input from above, 
 
 ```
 2\n
-```
-
-```
 1 2 3\n
-```
-
-```
  ^
-```
-
-```
 6 7 8\n
 ```
 
@@ -93,17 +66,8 @@ getline() starts reading all characters from the current position of the input p
 
 ```
 2\n
-```
-
-```
 1 2 3\n
-```
-
-```
 ^
-```
-
-```
 6 7 8\n
 ```
 
@@ -117,17 +81,8 @@ So the value in str would be 2 (without the newline). And if we call getline(cin
 
 ```
 2\n
-```
-
-```
 1 2 3\n
-```
-
-```
 6 7 8\n
-```
-
-```
 ^
 ```
 
@@ -139,118 +94,69 @@ So you have a sample input of the format:
 
 ```
 2 2
-```
-
-```
 3 1 5 4
-```
-
-```
 5 1 2 8 9 3
 ```
 
 And you want to read the first two integers and then the next two lines. And you write a code like this:
 
-```
+```cpp
 int x, y;
-```
-
-```
 string line1, line2;
-```
 
 cin >> x >> y;
 
 getline(cin, line1);
 
 getline(cin, line2);
-
+```
 What would actually be read into the variables are:
 
 ```
 x == 2
-```
-
-```
 y == 2
-```
-
-```
 line1 == '' // this is not right
-```
-
-```
 line2 == '3 1 5 4'
 ```
 
-This happens because after cin reads in the y value, it moves the read pointer to the \n character after the second 2 integer. Now when you call getline() for the first time, it start to reading from the \n, and since it immediately encounters a newline character, it just stores an empty string in line1 and then moves the pointer to the next character (3) after the \n. So the second call to getline() will start reading from 3 till it encounters the next \n character which is after 4 and then store all it has read into line2.
+This happens because after `cin` reads in the y value, it moves the read pointer to the `\n` character after the second 2 integer. Now when you call getline() for the first time, it start to reading from the \n, and since it immediately encounters a newline character, it just stores an empty string in line1 and then moves the pointer to the next character (3) after the \n. So the second call to getline() will start reading from 3 till it encounters the next \n character which is after 4 and then store all it has read into line2.
 
 ## How to prevent this issue
 
 There are many ways to prevent this from happening, a quick way is to just call getchar() after using >> to read the \n and advance the pointer:
 
-```
+```cpp
 int x, y;
-```
-
-```
 string line1, line2;
-```
 
-```
 cin >> x >> y;
-```
 
-```
 getchar(); // would read the last \n and advance to next
-```
 
-```
 getline(cin, line1);
-```
 
-```
 getline(cin, line2);
 ```
 
 Another way is to just use the >> operator to read in all the input that you require. Since you are really after reading in the integers, it is best to allow >> to parse the integers from the input for you like this:
 
-```
+```cpp
 int x, y;
-```
-
-```
 int line1Size;
-```
 
-```
 cin >> x >> y;
-```
 
-```
 cin >> line1Size;
-```
 
-```
 vector<int> line1(line1Size);
-```
 
-```
 for(int i = 0; i < line1Size; i++) {
-```
-
-```
   cin >> line1[i];
-```
-
-```
 }
-```
 
-```
 // repeat for line2
 ```
 
-line1 would then contain the values are required.
+`line1` would then contain the values are required.
 
 Hope this was helpful to understand how to best read inputs in those algorithm contests. Don't hesitate to comment about your ideas and tricks on reading inputs using c++.
