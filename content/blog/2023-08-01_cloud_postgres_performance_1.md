@@ -1,7 +1,7 @@
 ---
 title: Comparing Postgres Performance across Cloud Providers
 date: '2023-08-01T09:00:00.000Z'
-tags: ['performance', 'load_test', 'postgres']
+tags: ['performance', 'load_test', 'postgres', 'aws', 'gcp']
 slug: /cloud_postgres_performance_1
 featureImage: ../assets/2023_08_01/banner_cloud_database_images.jpg
 ---
@@ -81,3 +81,4 @@ If you want to run the tests, the code is Open Source on my [PerfectsEngineering
 
 Next, I'll run the tests on Azure and Heroku's PostgreSQL instances and bring everything to full Circle by running a similar test on a bare-metal server. ***Subscribe to know when that post goes live***, and do let me know in the comment if there are other Database providers you would like me to consider as well.
 
+**UPDATE**: The second part of this article that shares the result of [running these tests on Azure and a Bare Metal Machine](./cloud_postgres_performance_2) is available now.
