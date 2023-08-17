@@ -42,3 +42,5 @@ The Bare Metal Machine emerged as the definite victor in terms of performance. H
 A successful decision will come from balancing performance and cost while considering a provider's capabilities, reliability, and additional service offerings. Also, remember that performance can be considerably tweaked with software optimisations like indexes, data type choices, query designs, etc.
 
 The best cloud service provider or machine for your Postgres databases will heavily depend on your specific needs, budget and long-term plans. Nonetheless, comparative analysis like I have performed here can aid greatly in your process of picking the most suited option for your applications.
+
+> You can re-run these tests for yourself. The code for running them is available on my [PerfectsEngineering Repository](https://github.com/perfectsengineering/loadtesting-cloud-pg).
