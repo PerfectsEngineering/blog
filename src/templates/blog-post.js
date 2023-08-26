@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Divider, Row } from 'antd'
 import { graphql } from 'gatsby'
 import { get } from 'lodash'
+import rehypeReact from "rehype-react"
 
 import { Layout } from '../components/Layout'
 import { SEO } from '../components/seo'
@@ -15,6 +16,7 @@ import {
 } from '../components/PostExcerpt'
 import { ContentContainer } from '../components/ContentContainer'
 import SubscriptionForm from '../components/SubscriptionForm'
+import { Collapsible } from '../components/Collapsible'
 import { getFeatureImage } from '../utils/posts'
 import { SocialShare } from '../components/SocialShare'
 import { withBaseUrl } from '../utils/app'
@@ -62,6 +64,11 @@ const buildSeoImageMeta = (post) => {
   return [twitterImage, facebookImage]
 }
 
+const renderAst = new rehypeReact({
+  createElement: React.createElement,
+  components: { "collapsible": Collapsible }
+}).Compiler
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
@@ -107,10 +114,7 @@ class BlogPostTemplate extends React.Component {
               marginBottom: '4rem',
               aspectRatio: '7/3',
             })}
-            <div
-              className="blog-post-content"
-              dangerouslySetInnerHTML={{ __html: post.html }}
-            />
+            <div className="blog-post-content">{renderAst(post.htmlAst)}</div>
             <Tags tags={post.frontmatter.tags} />
             <SocialShare post={post} />
 
@@ -174,7 +178,7 @@ export const pageQuery = graphql`
       fields {
         slug
       }
-      html
+      htmlAst
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
