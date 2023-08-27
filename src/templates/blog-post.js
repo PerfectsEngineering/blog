@@ -65,6 +65,28 @@ const buildSeoImageMeta = (post) => {
   return [twitterImage, facebookImage]
 }
 
+const buildSeoPublishedTime = (post) => {
+  const publishedDate = get(post, 'frontmatter.rawDate')
+
+  if (!publishedDate) {
+    return []
+  }
+
+  const articlePublishedDate = {
+    name: 'article-published_time',
+    property: 'article:published_time',
+    content: publishedDate,
+  }
+
+  const ogPublishedDate = {
+    name: 'publish_date',
+    property: 'og:publish_date',
+    content: publishedDate,
+  }
+
+  return [ogPublishedDate, articlePublishedDate]
+}
+
 const renderAst = new rehypeReact({
   createElement: React.createElement,
   components: { "collapsible": Collapsible }
@@ -82,7 +104,7 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.excerpt}
           keywords={post.frontmatter.tags || []}
-          meta={buildSeoImageMeta(post)}
+          meta={buildSeoImageMeta(post).concat(buildSeoPublishedTime(post))}
         />
         
         <div
@@ -182,6 +204,7 @@ export const pageQuery = graphql`
       htmlAst
       frontmatter {
         title
+        rawDate: date
         date(formatString: "MMMM DD, YYYY")
         tags
         slug
