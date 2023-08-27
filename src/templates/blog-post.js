@@ -57,7 +57,8 @@ const buildSeoImageMeta = (post) => {
   }
 
   const facebookImage = {
-    name: 'og:image',
+    name: 'image',
+    property: 'og:image',
     content: withBaseUrl(seoImagePath),
   }
 
