@@ -12,7 +12,7 @@ I recently ran tests to benchmark the performance of Postgres databases offered 
 - Login to the Runner Machine, run the various `pgbench` commands and collate the results.
 The above steps were to be repeated for each of the six providers I had planned to run the benchmarks for 😅. I immediately knew the best approach to doing this was to automate as many steps as possible.
 
-In this post, I'll share how I used **Terraform** and **Ansible** to run my <a href="/cloud_postgres_performance_1" target="_blank">Postgres Performance tests]</a>. **Terraform** and **Ansible** are two powerful tools for managing infrastructure and automating configuration. They make it easy to generate efficient, scalable, and repeatable infrastructures.
+In this post, I'll share how I used **Terraform** and **Ansible** to run my <a href="/cloud_postgres_performance_1" target="_blank">Postgres Performance tests</a>. **Terraform** and **Ansible** are two powerful tools for managing infrastructure and automating configuration. They make it easy to generate efficient, scalable, and repeatable infrastructures.
 
 > **TLDR;** I used **Terraform** to provision the Postgres Instances across each environment and **Ansible** to automate the running of pgbench on the test-running server. You can see the [final code on Github](https://github.com/perfectsengineering/loadtesting-cloud-pg). Read on for the full gist.
 ## What are Terraform and Ansible?
