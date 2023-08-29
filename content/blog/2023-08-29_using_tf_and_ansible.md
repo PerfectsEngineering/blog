@@ -1,7 +1,7 @@
 ---
 title: How I Automated the Pgbench Tests using Terraform and Ansible
 date: '2023-08-29T09:00:00.000Z'
-tags: ['tutorials', 'terraform', 'ansible', 'postgres']
+tags: ['tutorial', 'postgres', 'iac']
 slug: /using_terraform_and_ansible_infrastructure
 featureImage: ../assets/2023_08_29/banner.jpg
 ---
@@ -21,7 +21,7 @@ Terraform is a tool owned by HashiCorp, to automatically manage (create, update 
 
 On the other hand, Ansible is an open-source tool that automates repetitive tasks (usually Machine/Server Configurations), reducing the chances of human mistakes. These tasks are written in YAML and provide powerful functionalities to manage even the most complex tasks.
 
-Now, combining the infrastructure management ability of **Terraform** with the tasks running capabilities of **Ansible**, you may already see how they can help automate the steps I highlighted at the start of this article. Not to mention that they also provide the added advantage of versioning all my infrastructure and tasks, a practice commonly referred to as **Infrastructure as Code (IaaC)**.
+Now, combining the infrastructure management ability of **Terraform** with the tasks running capabilities of **Ansible**, you may already see how they can help automate the steps I highlighted at the start of this article. Not to mention that they also provide the added advantage of versioning all my infrastructure and tasks, a practice commonly referred to as **Infrastructure as Code (IaC)**.
 
 ## Setting up the Infrastructure with Terraform
 ![Load Test Setup](../assets/pg_load_test_setup.png)
