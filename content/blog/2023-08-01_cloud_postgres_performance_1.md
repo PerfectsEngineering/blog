@@ -47,7 +47,7 @@ This configuration means the tests will execute between **200** and **1000** [tr
 Now with all that set. I ran the test multiple times and collated the results in a CSV.
 
 ## The Result
-I've only run the tests on the following platforms: [Amazon Web Services](https://aws.amazon.com/) (AWS), [Google Cloud Platform](https://cloud.google.com/) (GCP) and [Digitalocean](https://digitalocean.com/) (DO). I'll run on Azure, Heroku and Bare Metal next (subscribe to be notified of those results).
+I've only run the tests on the following platforms: [Amazon Web Services](https://aws.amazon.com/) (AWS), [Google Cloud Platform](https://cloud.google.com/) (GCP) and [Digitalocean](https://digitalocean.com/) (DO). I'll run on Azure, Heroku and Bare Metal next (<a href="https://eepurl.com/gZ9xGj" target="_blank">subscribe</a> to be notified of those results).
 
 Without further ado, below is a chart of the average processing rate as the number of transactions increased.
 

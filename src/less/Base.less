@@ -45,9 +45,9 @@ h1 {
     max-width: 100%;
   }
 
-  // pre[class*='language-'].line-numbers {
-  //   padding-left: 3.5rem !important;
-  // }
+  pre[class*='language-'].line-numbers {
+    padding-left: 3.5rem !important;
+  }
 }
 
 .post-title {
@@ -99,5 +99,16 @@ h1 {
     font-size: inherit;
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
+  }
+
+  ul, ol {
+    margin-left: 2.5rem;
+  }
+
+  li {
+    margin-bottom: 0;
+  }
+  li::marker {
+    font-weight: bold;
   }
 }

@@ -23,6 +23,10 @@ export function SEO({ description, lang, meta, keywords, title }) {
                 content: metaDescription,
               },
               {
+                name: `author`,
+                content: data.site.siteMetadata.author,
+              },
+              {
                 property: `og:title`,
                 content: title,
               },

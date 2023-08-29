@@ -9,6 +9,6 @@ import './src/less/App.Dark.less'
 import './src/less/App.Light.less'
 
 require('prismjs/themes/prism-tomorrow.css')
-// require('prismjs/plugins/line-numbers/prism-line-numbers.css')
+require('prismjs/plugins/line-numbers/prism-line-numbers.css')
 
 setTheme(getTheme())

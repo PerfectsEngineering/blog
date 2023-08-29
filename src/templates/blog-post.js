@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Divider, Row } from 'antd'
 import { graphql } from 'gatsby'
 import { get } from 'lodash'
+import rehypeReact from "rehype-react"
 
 import { Layout } from '../components/Layout'
 import { SEO } from '../components/seo'
@@ -15,6 +16,7 @@ import {
 } from '../components/PostExcerpt'
 import { ContentContainer } from '../components/ContentContainer'
 import SubscriptionForm from '../components/SubscriptionForm'
+import { Collapsible } from '../components/Collapsible'
 import { getFeatureImage } from '../utils/posts'
 import { SocialShare } from '../components/SocialShare'
 import { withBaseUrl } from '../utils/app'
@@ -55,12 +57,40 @@ const buildSeoImageMeta = (post) => {
   }
 
   const facebookImage = {
-    name: 'og:image',
+    name: 'image',
+    property: 'og:image',
     content: withBaseUrl(seoImagePath),
   }
 
   return [twitterImage, facebookImage]
 }
+
+const buildSeoPublishedTime = (post) => {
+  const publishedDate = get(post, 'frontmatter.rawDate')
+
+  if (!publishedDate) {
+    return []
+  }
+
+  const articlePublishedDate = {
+    name: 'article-published_time',
+    property: 'article:published_time',
+    content: publishedDate,
+  }
+
+  const ogPublishedDate = {
+    name: 'publish_date',
+    property: 'og:publish_date',
+    content: publishedDate,
+  }
+
+  return [ogPublishedDate, articlePublishedDate]
+}
+
+const renderAst = new rehypeReact({
+  createElement: React.createElement,
+  components: { "collapsible": Collapsible }
+}).Compiler
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -74,7 +104,7 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.excerpt}
           keywords={post.frontmatter.tags || []}
-          meta={buildSeoImageMeta(post)}
+          meta={buildSeoImageMeta(post).concat(buildSeoPublishedTime(post))}
         />
         
         <div
@@ -107,10 +137,7 @@ class BlogPostTemplate extends React.Component {
               marginBottom: '4rem',
               aspectRatio: '7/3',
             })}
-            <div
-              className="blog-post-content"
-              dangerouslySetInnerHTML={{ __html: post.html }}
-            />
+            <div className="blog-post-content">{renderAst(post.htmlAst)}</div>
             <Tags tags={post.frontmatter.tags} />
             <SocialShare post={post} />
 
@@ -174,9 +201,10 @@ export const pageQuery = graphql`
       fields {
         slug
       }
-      html
+      htmlAst
       frontmatter {
         title
+        rawDate: date
         date(formatString: "MMMM DD, YYYY")
         tags
         slug
