@@ -29,7 +29,7 @@ Now, combining the infrastructure management ability of **Terraform** with the t
 I will use AWS as a concrete example, but the concept can be extended to other providers. Now, I will describe my target architecture for AWS using HCL. First, I'll need to specify my provider of choice, in this case AWS:
 
 ### Terraform Providers
-```hcl
+```hcl{numberLines: true}
 terraform {
   required_version = ">= 1.5.0"
   required_providers {
@@ -48,7 +48,7 @@ These tell Terraform we need the `aws` provider runtime logic to be downloaded a
 
 ### Provision the Database
 Next, I want to create a Postgres instance. This can be done like so:
-```hcl
+```hcl{numberLines: true}
 resource "aws_db_instance" "postgres" {
   allocated_storage    = 50
   db_name              = "loadtest"
@@ -73,7 +73,7 @@ The `output` type informs Terraform to extract the address and port of the Postg
 
 ### Provisioning the Runner Machine
 Finally, I need a Runner that I can SSH into to run `pgbench`:
-```hcl
+```hcl{numberLines: true}
 resource "aws_key_pair" "default" {
   key_name   = "loadtest-ssh-key"
   # modify this path for your computers directory
@@ -98,7 +98,7 @@ output "compute_public_ip" {
 
 <collapsible title="All the Code together">
 
-```hcl
+```hcl{numberLines: true}
 # terraform.tf file
 terraform {
   required_version = ">= 1.5.0"
@@ -166,7 +166,7 @@ Ansible comes into play to ensure consistent machine configuration across multip
 
 ### Inventory of Hosts
 Ansible requires an inventory file containing the addresses of the machines we want to run our tasks on. This file can either be in INI or YAML format. I prefer the INI format for simplicity. The file contains the addresses in its simplest state, each on a single line.
-```ini
+```ini{numberLines: true}
 server1_address.com
 123.0.0.1
 ```
@@ -179,7 +179,7 @@ Next, you'll want to define the tasks. Ansible allows grouping a set of tasks in
 
 First, we want to run a group of tasks to update the system and install our required dependency. The system update is generally advised, especially if you are trying to install some software that may not exist on the machine's base image. In our case, we want to install the `postgresql` package, so that `pgbench` becomes available.
 
-```yaml
+```yaml{numberLines: true}
 ---
 - name: Setup server and dependencies
   hosts: all
@@ -202,7 +202,7 @@ Next, we want to run the pgbench command. You should take a look at the <a href=
 2. Run the tests and return and output
 
 These actions can be described as Ansible tasks like these:
-```yaml
+```yaml{numberLines: true}
 - name: Run the test
   hosts: all
   environment:
@@ -227,7 +227,7 @@ These tasks use the built-in ansible module `ansible.builtin.shell`. This allows
 
 <collapsible title="All the Ansible task.yaml together">
 
-```yaml
+```yaml{numberLines: true}
 ---
 - name: Setup server and dependencies
   hosts: all
