@@ -11,7 +11,7 @@ export const Theme = {
   Light: 'light',
 }
 
-export const DefaultTheme = Theme.Light
+export const DefaultTheme = Theme.Dark
 
 export function toggleDarkOrLightTheme() {
   const theme = getTheme()
@@ -26,7 +26,12 @@ export function getTheme() {
   const bodyNode = document.querySelector('body')
   const theme = bodyNode.getAttribute('data-theme')
   if (theme === '' || theme === null) {
-    return Lockr.get(THEME_STORAGE_KEY, DefaultTheme)
+    if (window.matchMedia){
+      const defaultTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? Theme.Dark : Theme.Light;
+      return Lockr.get(THEME_STORAGE_KEY, defaultTheme)
+    } else {
+      return Lockr.get(THEME_STORAGE_KEY, DefaultTheme)
+    }
   }
   return theme
 }
