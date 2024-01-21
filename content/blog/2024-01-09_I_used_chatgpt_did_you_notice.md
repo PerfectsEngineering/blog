@@ -1,6 +1,6 @@
 ---
 title: I generated my last article with ChatGPT. Did you notice?
-date: 2024-01-02T08:00:00.000Z
+date: 2024-01-09T08:00:00.000Z
 tags:
   - postgres
   - ai
