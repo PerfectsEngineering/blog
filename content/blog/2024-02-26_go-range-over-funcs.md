@@ -1,5 +1,5 @@
 ---
-title: Thoughts on Go's Functional Iterators (Range Functions)
+title: Exploring Go's Functional Iterators (Range Functions)
 date: 2024-02-26T09:00:00.00Z
 tags:
   - golang
@@ -13,16 +13,16 @@ I've been exploring this new `range` iterators feature and I'm writing this arti
 > "**range-over function iterators**" is a mouthful, so I'll be referring to them simply as "**Function Iterators**" throughout this article.
 ## First, what are range-over-function iterators?
 Function Iterators is a language feature the Go team is considering for the future of Go, and so in the 1.22 release, it is experimental and requires the `GOEXPERIMENT=rangefunc` enabled to work. When enabled, it allows importing the `iter` package, which exports some new types that allow writing custom `range` loops like:
-```go,
+```go
 var f iter.Seq[ValueType]
 for v := range f {
-...
+	...
 }
 
 // or in case you want to return two values
 var f iter.Seq2[KeyType, ValueType]
 for k, v := range f {
-...
+	...
 }
 ```
 
@@ -97,11 +97,11 @@ I chose this because, I wanted to see if I could compose these Iterators.
 As you may have noticed, the Range Function work well with Generics
 
 ## Simpler Aggregation Operations
-Have you ever had to fetch some data from a database using the default `sql` library and have to write a code. In my case, I've been working with BigQuery a lot, and there are times when I want to execute a query and marshal the results into a struct. Normally, this would be done like so:
+Have you ever had to fetch some data from a database using the default `database/sql` library and written an ugly for loop? You can argue there are ORM to handle that now, so I'll use BigQuery as an example, because there are not many great ORM's for BigQuery. 
+I've been working with BigQuery a lot, and sometimes, I want to execute a query and marshal the results into a struct. Usually, this would be done like so:
 ```go
 func fetchDataFromBigQuery(ctx context.Context, client *bigquery.Client) ([]string, error) {
 	query := client.Query("SELECT * FROM dataset1.table_a")
-
 	iter, err := query.Read(ctx)
 	if err != nil {
 		return nil, err
@@ -109,7 +109,7 @@ func fetchDataFromBigQuery(ctx context.Context, client *bigquery.Client) ([]stri
 
 	var results []string
 
-	// Iterate over the results and append them to the array
+	// Ugly loop: Iterate over the results and append them to the array
 	for {
 		var row Row
 		err := iter.Next(&row)
@@ -127,26 +127,18 @@ func fetchDataFromBigQuery(ctx context.Context, client *bigquery.Client) ([]stri
 	return results, nil
 }
 ```
-
-With Function Iterator and Generics, this boilerplate code can be much simpler like:
+This loop style is required because loops in Go must return a specific type and stop on some boolean condition, but with Function Iterators (and Generics), loops can now perform more and return any type. In this case, we can have the loop return the row value and also return an `error` like this:
 ```go
-func fetchDataFromBigQuery(
-	ctx context.Context,
-	client *bigquery.Client,
-) ([]string, error) {
-	query := client.Query("SELECT * FROM dataset1.table_a")
-
-	// Run the query and get the results
-	iter, err := query.Read(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("failed to execute query: %v", err)
-	}
-
+func fetchDataFromBigQuery(ctx context.Context, client *bigquery.Client)([]string, error) {
 	var results []string
 
-	// Iterate over the results and append them to the array
-	for row, err := range iterfuncs.BqRange[Row](iter) {
+	// Better loop: returns rows and error, if it occurs.
+	for row, err := range BqQueryRange[Row](
+		ctx,
+		client.Query("SELECT * FROM dataset1.table_a"),
+	) {
 		if err != nil {
+			// error can be .Read() error or a .Next() error.
 			return nil, fmt.Errorf("failed to retrieve row: %v", err)
 		}
 
@@ -157,5 +149,41 @@ func fetchDataFromBigQuery(
 	return results, nil
 }
 ```
+This has the expressiveness of a range loop and is also flexible because now you can add additional logic into the loop, like filtering, `break`/`continue`'s, or making additional calls, something that couldn't have easily been done if you created a custom function to run the loops.
+
+<collapsible title="The implementation for the `BqQueryRange` function looks like this:">
+
+```go
+func BqQueryRange[E any](ctx context.Context, query *bigquery.Query) iter.Seq2[*E, error] {
+	return func(yield func(*E, error) bool) {
+		iter, err := query.Read(ctx)
+		if err != nil {
+			yield(nil, err)
+			return
+		}
+
+		for {
+			var row E
+			err := iter.Next(&row)
+			if err != nil {
+				if err != iterator.Done {
+					// call error handler
+					if !yield(nil, err) {
+						return
+					}
+				}
+				return
+			}
+
+			if !yield(&row, nil) {
+				return
+			}
+		}
+	}
+}
+```
+</collapsible>
+
+
 ## Conclusion
 It is also important to mention that the performance of these Range Functions 
