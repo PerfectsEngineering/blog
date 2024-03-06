@@ -2,7 +2,7 @@
 title: Exploring Go's Functional Iterators (Range Functions)
 date: 2024-02-26T09:00:00.00Z
 tags:
-  - golang
+    - golang
 slug: /go_range_over_funcs
 featureImage: ../assets/welcome.jpg
 ---
@@ -11,8 +11,13 @@ Go's latest version, 1.22, introduces some exciting changes to the language. One
 I've been exploring this new `range` iterators feature and I'm writing this article to share some of my thoughts.
 
 > "**range-over function iterators**" is a mouthful, so I'll be referring to them simply as "**Function Iterators**" throughout this article.
+
+<collapsible title="What are range-over-function iterators?">
+
 ## First, what are range-over-function iterators?
+
 Function Iterators is a language feature the Go team is considering for the future of Go, and so in the 1.22 release, it is experimental and requires the `GOEXPERIMENT=rangefunc` enabled to work. When enabled, it allows importing the `iter` package, which exports some new types that allow writing custom `range` loops like:
+
 ```go
 var f iter.Seq[ValueType]
 for v := range f {
@@ -27,11 +32,14 @@ for k, v := range f {
 ```
 
 The `iter.Seq` and `iter.Seq2` are type aliases for a function that accepts a `yield` function as it's input:
+
 ```go
 type Seq[V any] func(yield func(V) bool)
 type Seq2[K, V any] func(yield func(K, V) bool)
 ```
+
 The `yield` function then needs to be called to return values for each iteration of the range loop. Let me use an example to illustrate how this all pieces together. Check out this function that generates a sequence of numbers from `start` to `end` with `step` intervals:
+
 ```go
 func Range(start, end, step int) iter.Seq[int] {
 	return func(yield func(int) bool) {
@@ -46,7 +54,9 @@ func Range(start, end, step int) iter.Seq[int] {
 	}
 }
 ```
+
 This can then be used as such:
+
 ```go
 for i := range Range(0, 10, 2) {
 	fmt.Println(i)
@@ -55,7 +65,10 @@ for i := range Range(0, 10, 2) {
 
 You can read Go's <a href="https://go.dev/wiki/RangefuncExperiment" target="_blank">Wiki about Function Iterators</a> to understand how this works behind the hood. Now, on to my explorations.
 
+</collapsible>
+
 ## Generating and Composing Sequences
+
 If Function Iterators become standardized in Go, we will get a bunch of utility functions that support Function Iterators. The Go announcement wiki gives some hints at standard library functions that could merit returning iterators like `strings.Split`.
 
 So, I started out by exploring some of this. The first I could think of was an infinite number generator:
@@ -97,8 +110,10 @@ I chose this because, I wanted to see if I could compose these Iterators.
 As you may have noticed, the Range Function work well with Generics
 
 ## Simpler Aggregation Operations
-Have you ever had to fetch some data from a database using the default `database/sql` library and written an ugly for loop? You can argue there are ORM to handle that now, so I'll use BigQuery as an example, because there are not many great ORM's for BigQuery. 
+
+Have you ever had to fetch some data from a database using the default `database/sql` library and written an ugly for loop? You can argue there are ORM to handle that now, so I'll use BigQuery as an example, because there are not many great ORM's for BigQuery.
 I've been working with BigQuery a lot, and sometimes, I want to execute a query and marshal the results into a struct. Usually, this would be done like so:
+
 ```go
 func fetchDataFromBigQuery(ctx context.Context, client *bigquery.Client) ([]string, error) {
 	query := client.Query("SELECT * FROM dataset1.table_a")
@@ -127,7 +142,9 @@ func fetchDataFromBigQuery(ctx context.Context, client *bigquery.Client) ([]stri
 	return results, nil
 }
 ```
+
 This loop style is required because loops in Go must return a specific type and stop on some boolean condition, but with Function Iterators (and Generics), loops can now perform more and return any type. In this case, we can have the loop return the row value and also return an `error` like this:
+
 ```go
 func fetchDataFromBigQuery(ctx context.Context, client *bigquery.Client)([]string, error) {
 	var results []string
@@ -149,6 +166,7 @@ func fetchDataFromBigQuery(ctx context.Context, client *bigquery.Client)([]strin
 	return results, nil
 }
 ```
+
 This has the expressiveness of a range loop and is also flexible because now you can add additional logic into the loop, like filtering, `break`/`continue`'s, or making additional calls, something that couldn't have easily been done if you created a custom function to run the loops.
 
 <collapsible title="The implementation for the `BqQueryRange` function looks like this:">
@@ -182,8 +200,9 @@ func BqQueryRange[E any](ctx context.Context, query *bigquery.Query) iter.Seq2[*
 	}
 }
 ```
+
 </collapsible>
 
-
 ## Conclusion
-It is also important to mention that the performance of these Range Functions 
+
+It is also important to mention that the performance of these Range Functions
