@@ -63,7 +63,7 @@ for i := range Range(0, 10, 2) {
 }
 ```
 
-You can read Go's <a href="https://go.dev/wiki/RangefuncExperiment" target="_blank">Wiki about Function Iterators</a> to understand how this works behind the hood. Now, on to my explorations.
+You can the Go <a href="https://go.dev/wiki/RangefuncExperiment" target="_blank">Wiki about Function Iterators</a> to understand how this works behind the hood. Now, on to my explorations.
 
 </collapsible>
 
@@ -71,11 +71,21 @@ You can read Go's <a href="https://go.dev/wiki/RangefuncExperiment" target="_bla
 
 If Function Iterators become standardized in Go, we will get a bunch of utility functions that support Function Iterators. The Go announcement wiki gives some hints at standard library functions that could merit returning iterators like `strings.Split`.
 
-So, I started out by exploring some of this. The first I could think of was an infinite number generator:
+So, I started out by exploring some of this. The first I could think of was an infinite number generator. What if I wanted to write a Go Code like:
 
 ```go
-// RangeInfinite returns a sequence of integers from start to infinity with step increment.
-func RangeInfinite(start, step int) iter.Seq[int] {
+start := 1; step := 5
+for i := range ToInfinity(start, step) {
+	// logic go here and then break when I'm done
+}
+```
+This will especially be useful in situations where you have to use a forever loop as a retry mechanism and want to keep track of the number of iterations.
+
+The implementation for `ToInfinity` is:
+
+```go
+// ToInfinity returns a sequence of integers from start to infinity with step increment.
+func ToInfinity(start, step int) iter.Seq[int] {
 	if step > 0 {
 		// Forward iteration from start
 		return func(yield func(int) bool) {
@@ -99,16 +109,57 @@ func RangeInfinite(start, step int) iter.Seq[int] {
 	}
 
 	return func(yield func(int) bool) {
-		// yield only start value when step 0
+		// yield only the 'start' value when step 0
 		yield(start)
 	}
 }
 ```
 
-I chose this because, I wanted to see if I could compose these Iterators.
+Notice how the implementation can also allow looping in the negative direction. The iterator's code isn't the most succinct, but this is the price you pay for this new feature's simplicity.
 
-As you may have noticed, the Range Function work well with Generics
+Naturally (or maybe not 😅), the question that comes to mind is, what if I only wanted to loop between a `start` and an `end` value? This is particularly interesting to me because I also wanted to explore the composability of these new `iter.Seq` types using the `iter.Pull()` functions that were introduced alongside them. So let's say I wanted to be able to write a loop like:
+```go
+start := 0; end := 10; step := 2;
+for i := range Between(start, end, step) {
+	// logic goes here
+}
+```
 
+I wanted to achieve this by re-using the `ToInfinity()` iterator function from earlier. The implementation of `Between()` will look like this:
+
+```go
+func Between(start, end, step int) iter.Seq[int] {
+	// use iter.Pull to be able to fetch values from ToInfinity's sequence
+	next, stop := iter.Pull(ToInfinity(start, step))
+
+	return func(yield func(int) bool) {
+		defer stop()
+		for {
+			value, ok := next()
+			// check to be sure that ToInfinity's sequence still has values
+			if !ok {
+				return
+			}
+
+			// check if bounds have been met and return
+			if step > 0 && value > end {
+				return
+			}
+			// check for bound for negative step values
+			if step < 0 && value < end {
+				return
+			}
+
+			// yield the next value since we are still within range
+			if !yield(value) {
+				return
+			}
+		}
+	}
+}
+```
+
+So far, these examples are great, but we can quickly achieve them with the current `range` for-loops that are part of the base Go language; you don't get much other than the composability from this. This brings me to the next set of things I set out to explore.
 ## Simpler Aggregation Operations
 
 Have you ever had to fetch some data from a database using the default `database/sql` library and written an ugly for loop? You can argue there are ORM to handle that now, so I'll use BigQuery as an example, because there are not many great ORM's for BigQuery.
