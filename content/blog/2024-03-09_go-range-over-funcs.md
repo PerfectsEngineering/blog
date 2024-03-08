@@ -1,12 +1,12 @@
 ---
-title: Exploring Go's Functional Iterators (Range Functions)
-date: 2024-02-26T09:00:00.00Z
+title: Exploring Go's Functional Iterators (Range-over Functions)
+date: 2024-03-09T09:00:00.00Z
 tags:
   - golang
   - rangefunc
   - tutorial
 slug: /go_range_over_funcs
-featureImage: ../assets/welcome.jpg
+featureImage: ../assets/2024_03_09/banner.jpg
 ---
 
 Go's latest version, 1.22, introduces some exciting changes to the language. One of these changes includes an experimental function called "**range-over-function iterators**" that has a vast potential to make Go's range loops more expressive and extensible. It could also make Go more complex.

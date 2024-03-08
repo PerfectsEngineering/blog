@@ -24,12 +24,16 @@ export const Collapsible = ({ title, expanded, children, className }) => {
   )
   return (
     <Collapse
-      defaultActiveKey={expanded ? '1' : null}
+      activeKey={expanedState ? '1' : null}
+      defaultActiveKey={expanedState ? '1' : null}
       onChange={toggleExpandedState}
       className={className}
     >
       <Panel header={titleElement} key="1">
         {children}
+        {/* <button onClick={() => { setExpandedState(false) }}>
+          Close
+        </button> */}
       </Panel>
     </Collapse>
   )
