@@ -11,7 +11,7 @@ module.exports = {
       linkedin: `https://linkedin.com/in/perfectmak`,
     },
   },
-  trailingSlash: 'never',
+  trailingSlash: 'ignore',
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
