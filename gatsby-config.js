@@ -12,6 +12,7 @@ module.exports = {
     },
   },
   trailingSlash: 'ignore',
+  pathPrefix: '/blog',
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
