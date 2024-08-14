@@ -65,7 +65,7 @@ export function SEO({ description, lang, meta, keywords, title }) {
               )
               .concat(meta)}
           >
-            <script defer data-domain="blog.perfects.engineering" src="https://plausible.io/js/script.js"></script>
+            <script defer data-domain="perfects.engineering" src="https://plausible.io/js/script.js"></script>
           </Helmet>
         )
       }}
