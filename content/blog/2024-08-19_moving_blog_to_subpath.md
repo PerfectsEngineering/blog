@@ -6,14 +6,14 @@ tags:
   - performance
   - proxy
 slug: /moving_blog_to_subpath
-featureImage:
+featureImage: ../assets/2024_08_19/banner.jpg
 ---
 Recently, I decided to make a significant change to my website structure: I moved my blog from a subdomain (`https://blog.perfects.engineering`) to a subpath (`https://perfects.engineering/blog`), where you are reading this article now. 
 In this article, I'll share why I made this decision and the technical steps I took to implement it.
 
 ## Why Make the Move?
 
-My blog at `blog.perfects.engineering` has been gaining traction, attracting a good amount of traffic per month. However, my main website at `perfects.engineering` wasn't seeing the same level of engagement. With plans to launch additional content in the future, I wanted to consolidate everything under the same top-level domain. This move would allow me to:
+My blog at `blog.perfects.engineering` has been gaining traction, attracting a good amount of traffic per month. However, my main website, `perfects.engineering` was seeing a lower level of engagement. With plans to launch additional content in the future, I wanted to consolidate everything under the same top-level domain. This move would allow me to:
 
 1. Centralize my content
 2. Improve overall domain authority
