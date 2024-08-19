@@ -44,9 +44,9 @@ class BlogIndex extends React.Component {
                 <h1 style={{ fontSize: '4rem' }}>
                   Perfects.
                   <br />
-                  Engineering
+                  Engineering Blog
                 </h1>
-                Perfect's tip and tricks on different topics in Software
+                Perfect's tips and tricks on different topics in Software
                 Engineering
               </Col>
               <Col lg={12} md={24} xs={24} style={{ marginBottom: '5rem' }}>
