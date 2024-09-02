@@ -1,11 +1,11 @@
 ---
 title: The differences between "Type Alias" and "New Types" in Go
-date: 2024-09-02T09:00:00.00Z
+date: 2024-09-03T09:00:00.00Z
 tags:
   - golang
   - learning
 slug: /go_alias_vs_new_types
-featureImage: ../assets/2024_09_02/banner.jpg
+featureImage: ../assets/2024_09_03/banner.jpg
 ---
 As a Golang developer, you've probably encountered two seemingly similar ways to define types:
 
