@@ -82,4 +82,4 @@ By understanding the nuances between these two definitions, you can write more i
 
 Happy coding, and may your codes never panic!
 
-> If you like content like this, you should subscribe to my Content. I post about building reliable software, automation, and performance testing.
+> This content was first posted on my Twitter Account. If you like content like this, you should follow me there [@perfectmak](https://x.com/Perfectmak/articles). I post about building reliable software, automation, and performance testing.
